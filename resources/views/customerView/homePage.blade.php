@@ -206,11 +206,16 @@
   <section class="features-section">
     <h3>Explore Our Services</h3>
     <div class="features-grid">
+    <a href="{{ route('maintain') }}" class="feature-item">
       <div class="feature-item">
         <img src="https://via.placeholder.com/50" alt="Feature Icon">
-        <h4>Vehicle Maintenance</h4>
+        <h4>Service Booking </h4>
         <p>Top-notch maintenance solutions to keep your vehicle running smoothly.</p>
       </div>
+    </a>
+
+
+
       <div class="feature-item">
         <img src="https://via.placeholder.com/50" alt="Feature Icon">
         <h4>Spare Parts</h4>
@@ -218,7 +223,7 @@
       </div>
       <div class="feature-item">
         <img src="https://via.placeholder.com/50" alt="Feature Icon">
-        <h4>Service Booking</h4>
+        <h4>Vehicle maintain</h4>
         <p>Book your vehicle's service easily through our online platform.</p>
       </div>
       <div class="feature-item">

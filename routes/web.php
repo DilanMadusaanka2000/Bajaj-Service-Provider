@@ -2,6 +2,7 @@
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerHomeController;
+use App\Models\VehicleMaintain;
 
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,7 @@ Route::get('/', function () {
 
      Route :: get('/',[CustomerHomeController::class, "index"])->name('home');
      Route :: get('/maintain',[CustomerHomeController::class, "maintain"])->name('maintain');
-     Route :: post('/maintain',[CustomerHomeController::class, "store"])->name('maintain.store');
+     Route :: post('/maintain/store',[CustomerHomeController::class, "store"])->name('maintain.store');
 
 
  });

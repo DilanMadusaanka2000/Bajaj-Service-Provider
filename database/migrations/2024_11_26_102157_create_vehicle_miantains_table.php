@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vehicle_maintenances', function (Blueprint $table) {
+        Schema::create('vehicle_miantains', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
             $table->string('email');
@@ -19,11 +19,8 @@ return new class extends Migration
             $table->string('vehicle_type');
             $table->string('vehicle_name');
             $table->string('vehicle_number');
-            $table->boolean('oil_change')->default(false);
-            $table->boolean('tire_replacement')->default(false);
-            $table->boolean('brake_services')->default(false);
-            $table->boolean('fluid_checks')->default(false);
-            $table->boolean('oil_filter_replacement')->default(false);
+            $table->text('maintenance_services')->nullable(); // To store selected maintenance checkboxes
+            $table->string('wash_type')->nullable(); // To store the selected vehicle wash type
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vehicle_maintenances');
+        Schema::dropIfExists('vehicle_miantains');
     }
 };

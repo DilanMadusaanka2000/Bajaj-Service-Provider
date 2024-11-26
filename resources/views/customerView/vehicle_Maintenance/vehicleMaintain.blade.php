@@ -22,82 +22,112 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
-        background: #003366;
+        background: linear-gradient(135deg, #003366, #002244);
+        color: #333;
       }
 
       .container {
         position: relative;
-        max-width: 700px;
+        max-width: 800px;
         width: 100%;
         background: #fff;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       }
 
       .container header {
-        font-size: 1.5rem;
-        color: #333;
-        font-weight: 500;
+        font-size: 1.8rem;
+        color: #003366;
+        font-weight: 600;
         text-align: center;
+        margin-bottom: 20px;
+        text-transform: uppercase;
       }
 
       .container .form {
-        margin-top: 30px;
-      }
-
-      .form .input-box {
-        width: 100%;
         margin-top: 20px;
       }
 
+      .form .input-box {
+        margin-bottom: 20px;
+      }
+
       .input-box label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
         color: #333;
+        margin-bottom: 8px;
       }
 
-      .form :where(.input-box input, .select-box) {
-        position: relative;
-        height: 20px;
+      .input-box input,
+      .select-box select {
         width: 100%;
-        outline: none;
-        font-size: 1rem;
-        color: #707070;
-        margin-top: 8px;
+        height: 45px;
         border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 15 px;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 0.95rem;
+        color: #555;
+        transition: all 0.3s ease;
       }
 
-      .input-box input:focus {
-        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+      .input-box input:focus,
+      .select-box select:focus {
+        border-color: #003366;
+        box-shadow: 0 0 5px rgba(0, 51, 102, 0.2);
       }
 
       .form .column {
         display: flex;
-        column-gap: 15 px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .column .input-box {
+        flex: 1;
+        min-width: calc(50% - 10px);
+      }
+
+      .form .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .checkbox-group div {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .checkbox-group label {
+        font-size: 0.9rem;
+        color: #555;
       }
 
       .form button {
-        height: 75px;
         width: 100%;
+        height: 50px;
         color: #fff;
         font-size: 1rem;
-        font-weight: 400;
-        margin-top: 30px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
+        font-weight: 500;
         background: #003366;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
       }
 
       .form button:hover {
-        background: #002244;
+        background: #001d4d;
       }
 
-      /* Responsive */
-      @media screen and (max-width: 500px) {
-        .form .column {
-          flex-wrap: wrap;
+      /* Responsive Design */
+      @media screen and (max-width: 768px) {
+        .column .input-box {
+          min-width: 100%;
         }
       }
     </style>
@@ -105,83 +135,120 @@
   <body>
     <section class="container">
       <header>Vehicle Maintenance and Service Form</header>
-      <form action="{ {route('maintain.store')} }" method="post" enctype="multipart/form"  class="form">
+      <form
+        action="{{ route('maintain.store') }}"
+        method="post"
+        enctype="multipart/form-data"
+        class="form"
+      >
         @csrf
         <!-- Full Name -->
         <div class="input-box">
           <label>Full Name</label>
-          <input type="text" placeholder="Enter full name" required />
+          <input
+            type="text"
+            name="full_name"
+            placeholder="Enter full name"
+            required
+          />
         </div>
 
         <!-- Email Address -->
         <div class="input-box">
           <label>Email Address</label>
-          <input type="text" placeholder="Enter email address" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter email address"
+            required
+          />
         </div>
 
         <!-- Phone Number -->
         <div class="input-box">
           <label>Phone Number</label>
-          <input type="number" placeholder="Enter phone number" required />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Enter phone number"
+            required
+          />
         </div>
 
         <!-- Vehicle Information -->
         <div class="column">
           <div class="input-box">
             <label>Vehicle Type</label>
-            <input type="text" placeholder="Enter vehicle type" required />
+            <input
+              type="text"
+              name="vehicle_type"
+              placeholder="Enter vehicle type"
+              required
+            />
           </div>
           <div class="input-box">
             <label>Vehicle Name</label>
-            <input type="text" placeholder="Enter vehicle name" required />
+            <input
+              type="text"
+              name="vehicle_name"
+              placeholder="Enter vehicle name"
+              required
+            />
           </div>
           <div class="input-box">
-            <label>Vehicle No</label>
-            <input type="text" placeholder="Enter vehicle number" required />
+            <label>Vehicle Number</label>
+            <input
+              type="text"
+              name="vehicle_number"
+              placeholder="Enter vehicle number"
+              required
+            />
           </div>
         </div>
 
-        <!-- Vehicle Maintenance and Repair -->
+        <!-- Maintenance and Repair -->
         <div class="input-box">
           <label>Maintenance and Repair Services</label>
-          <div>
-            <input type="checkbox" id="oil-change" name="service" />
-            <label for="oil-change">Oil Change</label>
-          </div>
-          <div>
-            <input type="checkbox" id="tire-replacement" name="service" />
-            <label for="tire-replacement">Tire Replacement</label>
-          </div>
-          <div>
-            <input type="checkbox" id="brake-services" name="service" />
-            <label for="brake-services">Brake Services</label>
-          </div>
-          <div>
-            <input type="checkbox" id="fluid-checks" name="service" />
-            <label for="fluid-checks">Fluid Checks</label>
-          </div>
-          <div>
-            <input type="checkbox" id="oil-filter-replacement" name="service" />
-            <label for="oil-filter-replacement">Oil Filter Replacement</label>
+          <div class="checkbox-group">
+            <div>
+              <input type="checkbox" id="oil-change" name="maintenance_services" value="Oil Change" />
+              <label for="oil-change">Oil Change</label>
+            </div>
+            <div>
+              <input type="checkbox" id="tire-replacement" name="maintenance_services" value="Tire Replacement" />
+              <label for="tire-replacement">Tire Replacement</label>
+            </div>
+            <div>
+              <input type="checkbox" id="brake-services" name="maintenance_services"  value="Brake Services" />
+              <label for="brake-services">Brake Services</label>
+            </div>
+            <div>
+              <input type="checkbox" id="fluid-checks" name="maintenance_services" value="Fluid Checks" />
+              <label for="fluid-checks">Fluid Checks</label>
+            </div>
+            <div>
+              <input type="checkbox" id="oil-filter-replacement" name="maintenance_service" value="Oil Filter Replacement" />
+              <label for="oil-filter-replacement">Oil Filter Replacement</label>
+            </div>
           </div>
         </div>
 
         <!-- Vehicle Wash -->
         <div class="input-box">
-          <label>Vehicle Washes</label>
+          <label>Vehicle Wash Type</label>
           <div class="select-box">
-            <select required>
+            <select name="wash_type" required>
               <option hidden>Select wash type</option>
-              <option>Basic</option>
-              <option>Full</option>
-              <option>Detailing</option>
-              <option>Premium</option>
+              <option value="Basic">Basic</option>
+              <option value="Full">Full</option>
+              <option value="Detailing">Detailing</option>
+              <option value="Premium">Premium</option>
             </select>
           </div>
         </div>
 
         <!-- Submit Button -->
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </section>
   </body>
