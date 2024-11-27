@@ -39,6 +39,7 @@ Route::get('/', function () {
      Route :: get('/',[CustomerHomeController::class, "index"])->name('home');
      Route :: get('/maintain',[CustomerHomeController::class, "maintain"])->name('maintain');
      Route :: post('/maintain/store',[CustomerHomeController::class, "store"])->name('maintain.store');
+     Route :: get ('/maintain/time',[CustomerHomeController::class,"time"])->name('time');
 
 
  });
@@ -48,9 +49,11 @@ Route::get('/', function () {
 
  //service appointmnet details
 
- Route :: prefix('/service/dashboard/details')->group(function(){
+ Route :: prefix('/service/dashboard')->group(function(){
 
-
+     Route::get('/',[DashbordController::class, "index"])->name('dashboard');
+     Route::get('/maintain-request',[DashbordController::class, "maintainrequest"])->name('maintain.request');
+     //Route::get('/maintain-request/time',[DashbordController::class, "maintainrequest"])->name('maintain.request.time');
 
  });
 

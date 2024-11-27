@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -21,7 +21,7 @@
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                       
+
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
                                 @auth
@@ -59,4 +59,76 @@
             </div>
         </div>
     </body>
+</html> --}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bajaj Service Provider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-black">
+    <!-- Navbar -->
+    <header class="bg-gray-100 shadow">
+        <div class="container mx-auto flex items-center justify-between p-4">
+            <div>
+                <a href="/" class="text-xl font-bold text-blue-900">Bajaj Service Provider</a>
+            </div>
+            @if (Route::has('login'))
+                <nav class="-mx-3 flex flex-1 justify-end">
+                    @auth
+                        <!-- Dashboard Button -->
+                        <a href="{{ url('/dashboard') }}"
+                            class="rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400">
+                            Dashboard
+                        </a>
+                    @else
+                        <!-- Login Button -->
+                        <a href="{{ route('login') }}"
+                            class="rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400">
+                            Log in
+                        </a>
+                        @if (Route::has('register'))
+                            <!-- Register Button -->
+                            <a href="{{ route('register') }}"
+                                class="ml-3 rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400">
+                                Register
+                            </a>
+                        @endif
+                    @endauth
+                </nav>
+            @endif
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-white">
+        <div class="container mx-auto flex flex-col-reverse items-center justify-between px-4 py-16 md:flex-row">
+            <!-- Text Content -->
+            <div class="max-w-lg text-center md:text-left">
+                <h1 class="text-4xl font-bold text-gray-900">
+                    Reliable Bajaj Service at Your Fingertips
+                </h1>
+                <p class="mt-4 text-gray-700">
+                    Experience top-notch service and maintenance for your Bajaj vehicles. Our expert team ensures quality and reliability for every ride.
+                </p>
+                <div class="mt-6">
+                    <a href="#services"
+                        class="rounded-md px-4 py-2 text-white bg-gray-800 hover:bg-gray-900 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-600">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="max-w-xl bg-blue-100 p-4 rounded-lg shadow-lg">
+                <img src="{{ asset('img/Pic.png') }}" alt="Bajaj Service" class="rounded-lg shadow-lg w-96 h-auto" />
+            </div>
+        </div>
+    </section>
+</body>
 </html>
+

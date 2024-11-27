@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Boxicons -->
@@ -260,8 +260,256 @@
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
-	
+
 
 	<script src="script.js"></script>
 </body>
+</html> --}}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bajaj Spare Parts Dashboard with Graphs</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b1021;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #1a1c31;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .sidebar h2 {
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #2a2c46;
+            padding-left: 10px;
+        }
+
+        .content {
+            flex-grow: 1;
+            background-color: #181e4a;
+            padding: 20px;
+        }
+
+        .content h1 {
+            color: white;
+        }
+
+        .summary-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-box {
+            background-color: #0036f0;
+            padding: 20px;
+            width: 200px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .summary-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .chart-box {
+            width: 45%;
+            background-color: #1a1c31;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .chart-box canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+
+        .circular-progress {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: conic-gradient(#4cd137 0% 75%, #2f3640 75% 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circular-progress .value {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Bajaj Spare Parts Providers & Service Center</h2>
+            <a href="#">Dashboard</a>
+            <a href="#">Orders</a>
+            <a href="#">Total Sales</a>
+            <a href="#">Monthly Sale Summary</a>
+            <a href="#">Customer Inquiries</a>
+            <div class="logout">
+                <a href="#">Logout</a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Service Center</h1>
+            <div class="summary-section">
+                <div class="summary-box">
+                    <h3>Notifications</h3>
+                    <p>No of Services</p>
+                </div>
+                <div class="summary-box">
+                    <h3>No of Services</h3>
+                </div>
+                <div class="summary-box">
+                    <h3>Completed Services</h3>
+                </div>
+                <div class="summary-box">
+                    <h3>Inventory Status</h3>
+                </div>
+                <div class="summary-box">
+                    <h3>Pending Payments</h3>
+                </div>
+                <div class="summary-box">
+                    <h3>Monthly Revenue</h3>
+                </div>
+            </div>
+
+            <!-- Charts section -->
+            <div class="charts-container">
+                <!-- No of Orders and Monthly Revenue Graph (Bar & Line) -->
+                <div class="chart-box">
+                    <h3>No of Orders and Monthly Revenue</h3>
+                    <canvas id="ordersRevenueChart"></canvas>
+                </div>
+
+                <!-- Inventory Status (Pie Chart) -->
+                <div class="chart-box">
+                    <h3>Inventory Status - Top 5 Ordered Products</h3>
+                    <canvas id="inventoryStatusChart"></canvas>
+                </div>
+
+                <!-- Income Circular Progress -->
+                <div class="chart-box">
+                    <h3>Income</h3>
+                    <div class="circular-progress">
+                        <div class="value">75%</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 10px;">32% Spending Target</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js Script for Orders, Revenue, and Inventory Status -->
+    <script>
+        // No of Orders and Monthly Revenue Chart
+        var ctxOrdersRevenue = document.getElementById('ordersRevenueChart').getContext('2d');
+        var ordersRevenueChart = new Chart(ctxOrdersRevenue, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'No of Orders',
+                        data: [150, 200, 180, 220, 300, 250, 270, 290, 310, 350, 320, 380],
+                        backgroundColor: '#007bff',
+                        borderColor: '#007bff',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'Monthly Revenue (in USD)',
+                        type: 'line',
+                        data: [1000, 1200, 1100, 1300, 1500, 1400, 1550, 1650, 1700, 1900, 1800, 2000],
+                        backgroundColor: 'transparent',
+                        borderColor: '#28a745',
+                        borderWidth: 2,
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Inventory Status Pie Chart
+        var ctxInventoryStatus = document.getElementById('inventoryStatusChart').getContext('2d');
+        var inventoryStatusChart = new Chart(ctxInventoryStatus, {
+            type: 'pie',
+            data: {
+                labels: ['Brake Pads', 'Oil Filters', 'Headlights', 'Tires', 'Clutch Plates'],
+                datasets: [{
+                    label: 'Top 5 Ordered Products',
+                    data: [300, 250, 200, 150, 100],
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
 </html>
+

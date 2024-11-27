@@ -34,7 +34,15 @@ class CustomerHomeController extends Controller
 
 
 
-        return redirect()->back()->with('success', 'Vehicle maintenance record saved successfully.');
+        //return redirect()->route()->with('success', 'Vehicle maintenance record saved successfully.');
+        return redirect()->route('time')->with('success', 'Vehicle maintenance record saved successfully.');
 
+
+}
+
+
+public function time (){
+
+    return view('dashboard1.maintainRequestTime');
 }
 }
