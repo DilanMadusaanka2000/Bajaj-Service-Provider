@@ -40,6 +40,7 @@ Route::get('/', function () {
      Route :: get('/maintain',[CustomerHomeController::class, "maintain"])->name('maintain');
      Route :: post('/maintain/store',[CustomerHomeController::class, "store"])->name('maintain.store');
      Route :: get ('/maintain/time',[CustomerHomeController::class,"time"])->name('time');
+     Route :: post('/maintain/save-time', [CustomerHomeController::class, 'saveTime'])->name('saveTime');
 
 
  });
