@@ -11,7 +11,7 @@ class VehicleMaintain extends Model
     use HasFactory;
 
     protected $fillable = [
-        'full_name', 'email', 'phone', 'vehicle_type', 'vehicle_name', 'vehicle_number', 'maintenance_services', 'wash_type'
+        'full_name', 'email', 'phone', 'vehicle_type', 'vehicle_name', 'vehicle_number', 'maintenance_services', 'wash_type' , 'status'
     ];
 }
 

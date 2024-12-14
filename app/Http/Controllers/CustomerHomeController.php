@@ -110,4 +110,47 @@ class CustomerHomeController extends Controller
 
         return redirect()->route('home')->with('success', 'Time slot selected successfully.');
     }
+
+
+
+
+    //update service completed
+
+    public function updateStatus(Request $request, $id) {
+        $task = VehicleMaintain::find($id);
+
+        if (!$task) {
+            return response()->json(['message' => 'Task not found'], 404);
+        }
+
+        $task->status = $request->status;
+        $task->save();
+
+        return response()->json([
+            'message' => 'Status updated successfully',
+            'status' => $task->status
+        ]);
+    }
+
+
+
+    //service search
+
+    public function searchTasks(Request $request)
+{
+    $query = $request->input('query');
+
+    $tasks = VehicleMaintain::where('id', 'LIKE', "%{$query}%")
+        ->orWhere('full_name', 'LIKE', "%{$query}%")
+        ->orWhere('email', 'LIKE', "%{$query}%")
+        ->orWhere('phone', 'LIKE', "%{$query}%")
+        ->orWhere('vehicle_type', 'LIKE', "%{$query}%")
+        ->orWhere('vehicle_name', 'LIKE', "%{$query}%")
+        ->orWhere('vehicle_number', 'LIKE', "%{$query}%")
+        ->orWhere('maintenance_services', 'LIKE', "%{$query}%")
+        ->get();
+
+    return response()->json($tasks);
+}
+
 }

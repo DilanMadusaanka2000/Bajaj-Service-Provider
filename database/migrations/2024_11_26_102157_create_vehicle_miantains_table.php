@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('vehicle_number');
             $table->text('maintenance_services')->nullable(); // To store selected maintenance checkboxes
             $table->string('wash_type')->nullable(); // To store the selected vehicle wash type
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

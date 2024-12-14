@@ -2,6 +2,7 @@
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerHomeController;
+use App\Http\Controllers\VehicleServiceController;
 use App\Models\VehicleMaintain;
 
 use Illuminate\Support\Facades\Route;
@@ -32,11 +33,15 @@ Route::get('/', function () {
 
 
 
+
+
+
  //Customer Vehicle Maintain Crude
 
  Route :: prefix('/home')->group(function(){
 
      Route :: get('/',[CustomerHomeController::class, "index"])->name('home');
+     Route :: get('/home2',[VehicleServiceController::class, "index"])->name('home2');
      Route :: get('/maintain',[CustomerHomeController::class, "maintain"])->name('maintain');
      Route :: post('/maintain/store',[CustomerHomeController::class, "store"])->name('maintain.store');
      Route :: get ('/maintain/time',[CustomerHomeController::class,"time"])->name('time');
@@ -54,6 +59,8 @@ Route::get('/', function () {
 
      Route::get('/',[DashbordController::class, "index"])->name('dashboard');
      Route::get('/maintain-request',[DashbordController::class, "maintainrequest"])->name('maintain.request');
+     Route::post('/maintain-request/{id}/status', [CustomerHomeController::class, 'updateStatus'])->name('tasks.updateStatus');
+
      //Route::get('/maintain-request/time',[DashbordController::class, "maintainrequest"])->name('maintain.request.time');
 
  });
@@ -65,8 +72,8 @@ Route::get('/', function () {
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard1', function () {
+    return view('dashboard1');
 })->name('dashboard');
 
 
