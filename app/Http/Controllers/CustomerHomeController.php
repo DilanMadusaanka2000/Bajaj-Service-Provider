@@ -10,7 +10,8 @@
 
 // {
 
-//     protected $task;
+//     protected $task
+
 //     public function __construct()
 //     {
 //         $this->task = new VehicleMaintain();
@@ -110,9 +111,6 @@ class CustomerHomeController extends Controller
 
         return redirect()->route('home')->with('success', 'Time slot selected successfully.');
     }
-
-
-
 
     //update service completed
 

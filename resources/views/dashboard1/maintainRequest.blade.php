@@ -44,7 +44,8 @@
   placeholder="Search by ID, Name, Email, Vehicle Number, etc."
   onkeyup="liveSearch()"
   style="margin-bottom: 20px; padding: 8px; width: 50%; font-size: 16px;"
->
+  >
+
 
 
 <h2>Table</h2>
@@ -138,7 +139,7 @@
 
 
 
-//live search function 
+//live search function
 
     function liveSearch() {
     // Get the search input and convert to lowercase
