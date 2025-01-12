@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import logo from '../Assests/logo.png'
 import cart_icon from '../Assests/cart_icon.png'
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 function Navbar() {
-    const [menu,setMenu] = useState("shop");
+    const [menu,setMenu] = useState("home");
   return (
     <div className='navbar'>
 
@@ -16,9 +17,9 @@ function Navbar() {
         </div>
 
         <ul className='nav-menu'>
-            <li onClick={()=>{setMenu("home")}}>HOME {menu==="home"?<hr />:<></>}</li>
+            <li onClick={()=>{setMenu("home")}}><Link style={{ textDecoration: 'none'}} to='/'>HOME</Link> {menu==="home"?<hr />:<></>}</li>
             <li onClick={()=>{setMenu("shop")}}>SHOP {menu==="shop"?<hr />:<></>}</li>
-            <li onClick={()=>{setMenu("cart")}}>CART {menu==="cart"?<hr />:<></>}</li>
+            <li onClick={()=>{setMenu("cart")}}><Link style={{ textDecoration: 'none'}} to='/cart'> CART </Link> {menu==="cart"?<hr />:<></>}</li>
             <li onClick={()=>{setMenu("about")}}>ABOUT {menu==="about"?<hr />:<></>}</li>
             <li onClick={()=>{setMenu("contact")}}>CONTACT {menu==="contact"?<hr />:<></>}</li>
         </ul>
