@@ -88,6 +88,8 @@ class CustomerHomeController extends Controller
         // Redirect to time selection form with the maintain ID and vehicle number
         return redirect()->route('time', ['maintain_id' => $vehicleMaintain->id, 'vehicle_number' => $vehicleMaintain->vehicle_number])
                          ->with('success', 'Vehicle maintenance record saved successfully.');
+
+                         
     }
 
     public function time(Request $request)
