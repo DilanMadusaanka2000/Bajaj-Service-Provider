@@ -1,26 +1,17 @@
-import React from 'react'
+import React from 'react';
 import './Item.css';
 
-
-
-function Item() {
+const Item = ({ id, name, image, new_price, old_price }) => {
   return (
-
-    <div className='item'>
-        <img src={props.image} alt="" />
-        <p>{props.name}</p>
-        <div className="item-prices">
-            <div className="item-price-new">
-                {props.new_price}
-            </div>
-            <div className='item-price-old'>
-                {props.old_price}
-            </div>
-
-        </div>
-
+    <div className="item-card" id={`item-${id}`}>
+      <img src={image} alt={name} className="item-image" />
+      <h3>{name}</h3>
+      <p>
+        <span className="new-price">${new_price}</span>
+        <span className="old-price">${old_price}</span>
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default Item
+export default Item;

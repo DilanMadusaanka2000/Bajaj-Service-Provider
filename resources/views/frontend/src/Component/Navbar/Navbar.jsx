@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import logo from '../Assests/logo.png'
 import cart_icon from '../Assests/cart_icon.png'
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 function Navbar() {
     const [menu,setMenu] = useState("home");
+    const navigate = useNavigate();
   return (
+
     <div className='navbar'>
 
         <div className="nav-logo">
@@ -25,7 +27,7 @@ function Navbar() {
         </ul>
 
           <div className="nav-login-cart">
-            <button>Login</button>
+            <button onClick={() => navigate('/login')}>Login</button>
             <img src={cart_icon} alt="" />
             <div className="nav-cart-count">0</div>
           </div>
