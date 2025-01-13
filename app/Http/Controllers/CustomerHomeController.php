@@ -80,6 +80,8 @@ class CustomerHomeController extends Controller
         return view('customerView.vehicle_Maintenance.vehicleMaintain');
     }
 
+
+
     public function store(Request $request)
     {
         // Save vehicle maintenance record
@@ -89,8 +91,16 @@ class CustomerHomeController extends Controller
         return redirect()->route('time', ['maintain_id' => $vehicleMaintain->id, 'vehicle_number' => $vehicleMaintain->vehicle_number])
                          ->with('success', 'Vehicle maintenance record saved successfully.');
 
+<<<<<<< HEAD
                          
+=======
+
+
+                         //send mail to the customer
+>>>>>>> 9d6b055380646df3483371d526b84d00f0b44c12
     }
+
+
 
     public function time(Request $request)
     {
@@ -149,6 +159,7 @@ class CustomerHomeController extends Controller
         ->orWhere('vehicle_number', 'LIKE', "%{$query}%")
         ->orWhere('maintenance_services', 'LIKE', "%{$query}%")
         ->get();
+        
 
     return response()->json($tasks);
 }
