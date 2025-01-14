@@ -4,6 +4,10 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CustomerHomeController;
 use App\Http\Controllers\VehicleServiceController;
 use App\Models\VehicleMaintain;
+use App\Http\Controllers\SparePartsController;
+use App\Http\Controllers\SparpartsDashbordController;
+use App\Http\Controllers\InventryController;
+use App\Http\Controllers\OrderController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +56,37 @@ Route::get('/', function () {
 
 
 
+ //spare parts ordering
+
+Route :: prefix('/home/spare-parts')->group(function(){
+
+    //Route :: get('/',[SparePartsController::class, "index"])->name('home');
+    Route::get('/', [SparePartsController::class, 'index'])->name('home');
+    Route::get('/shop', [SparePartsController::class, 'shop'])->name('shop');
+    Route::get('/cart', [SparePartsController::class, 'cart'])->name('cart');
+    Route::get('/orders', [SparePartsController::class, 'orders'])->name('orders');
+    Route::get('/category/{category}', [SparePartsController::class, 'category'])->name('category');
+
+
+});
+
+
+
+
+
+
+
+
+// Route::get('/test-navbar', function () {
+//     return view('SpareParts.Components.navbar');
+// });
+
+
+
+
+
+
+
 
  //service appointmnet details
 
@@ -77,3 +112,25 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard1', function () 
 })->name('dashboard');
 
 
+
+
+//dashboard
+
+Route :: prefix('/sp/dashboard')->group(function(){
+
+    Route::get('/', [SparpartsDashbordController::class, 'index'])->name('dashbord');
+
+
+});
+Route :: prefix('/sp/dashboard/inventrory')->group(function(){
+
+    Route::get('/', [InventryController::class, 'index'])->name('inventory');
+
+
+});
+Route :: prefix('/sp/dashboard/order')->group(function(){
+
+    Route::get('/', [OrderController::class, 'index'])->name('order');
+
+
+});
