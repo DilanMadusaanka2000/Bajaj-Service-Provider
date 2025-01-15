@@ -52,16 +52,24 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Add Spare Parts</div>
-                    </div>
 
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ion-icon>
-                    </div>
+
+                <div class="card" style="cursor: pointer;">
+                    <a href="{{ route('inventory.form') }}" style="text-decoration: none; color: inherit;">
+                        <div>
+                            <div class="numbers">80</div>
+                            <div class="cardName">Add Spare Parts</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon name="cart-outline"></ion-icon>
+                        </div>
+                    </a>
                 </div>
+
+
+
+
 
                 <div class="card">
                     <div>

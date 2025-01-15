@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('spare_parts', function (Blueprint $table) {
             $table->id('spareParts_id'); // Primary key: spareParts_id
             $table->string('name'); // Spare part name
-            $table->integer('stock'); // Stock quantity of the spare part
-            $table->text('description')->nullable(); // Spare part description (optional)
-            $table->timestamps();
+            $table->string('category'); // Spare part category
+            $table->decimal('price', 10, 2); // Spare part price with two decimal places
+            $table->decimal('discount', 10, 2)->nullable(); // Optional discount
+            $table->integer('stock'); // Stock count
+            $table->text('description')->nullable();
+            $table->string('imgname')->nullable(); // Optional description
+            $table->timestamps(); // Created_at and updated_at timestamps
         });
     }
 

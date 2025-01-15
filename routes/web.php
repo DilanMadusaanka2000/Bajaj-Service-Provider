@@ -58,17 +58,17 @@ Route::get('/', function () {
 
  //spare parts ordering
 
-Route :: prefix('/home/spare-parts')->group(function(){
+// Route :: prefix('/home/spare-parts')->group(function(){
 
-    //Route :: get('/',[SparePartsController::class, "index"])->name('home');
-    Route::get('/', [SparePartsController::class, 'index'])->name('home');
-    Route::get('/shop', [SparePartsController::class, 'shop'])->name('shop');
-    Route::get('/cart', [SparePartsController::class, 'cart'])->name('cart');
-    Route::get('/orders', [SparePartsController::class, 'orders'])->name('orders');
-    Route::get('/category/{category}', [SparePartsController::class, 'category'])->name('category');
+//     //Route :: get('/',[SparePartsController::class, "index"])->name('home');
+//     Route::get('/', [SparePartsController::class, 'index'])->name('home');
+//     Route::get('/shop', [SparePartsController::class, 'shop'])->name('shop');
+//     Route::get('/cart', [SparePartsController::class, 'cart'])->name('cart');
+//     Route::get('/orders', [SparePartsController::class, 'orders'])->name('orders');
+//     Route::get('/category/{category}', [SparePartsController::class, 'category'])->name('category');
 
 
-});
+// });
 
 
 
@@ -122,12 +122,26 @@ Route :: prefix('/sp/dashboard')->group(function(){
 
 
 });
+
+
+
+// dashboard inventory
 Route :: prefix('/sp/dashboard/inventrory')->group(function(){
 
+
     Route::get('/', [InventryController::class, 'index'])->name('inventory');
+    Route::get('/form', [InventryController::class, 'inventroyForm'])->name('inventory.form');
+    Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store');
+    Route::post('/maintain-request/{id}/status', [InventryController::class, 'update'])->name('update');
+
+
 
 
 });
+
+
+
+
 Route :: prefix('/sp/dashboard/order')->group(function(){
 
     Route::get('/', [OrderController::class, 'index'])->name('order');
