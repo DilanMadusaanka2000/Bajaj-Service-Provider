@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('discount', 10, 2)->nullable(); // Optional discount
             $table->integer('stock'); // Stock count
             $table->text('description')->nullable();
-            $table->string('imgname')->nullable(); // Optional description
+            $table->string('image')->nullable(); // Optional description
             $table->timestamps(); // Created_at and updated_at timestamps
         });
     }

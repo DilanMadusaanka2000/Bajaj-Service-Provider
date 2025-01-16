@@ -19,7 +19,7 @@ class SpareParts extends Model
         'discount',
         'stock',
         'description',
-        'imgname',
+        'image',
     ];
 
 

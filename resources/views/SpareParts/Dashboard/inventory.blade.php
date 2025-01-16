@@ -76,7 +76,9 @@
 
 
 
-                <div class="card">
+                <div class="card" style="cursor: pointer;">
+                <a href="{{ route('inventory.view.lowquantity') }}" style="text-decoration: none; color: inherit;">
+
                     <div>
                         <div class="numbers">$7,842</div>
                         <div class="cardName">Low Stock Alert</div>
@@ -85,7 +87,8 @@
                     <div class="iconBx">
                         <ion-icon name="cash-outline"></ion-icon>
                     </div>
-                </div>
+                  </div>
+                </a>
             </div>
 
             <!-- ================ Order Details List ================= -->
@@ -172,7 +175,7 @@
                         <h2>Recent Customers</h2>
                     </div>
 
-                   
+
                 </div>
             </div>
         </div>
