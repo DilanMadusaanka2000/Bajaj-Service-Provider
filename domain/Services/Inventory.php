@@ -7,7 +7,7 @@ class Inventory
 {
     protected $task;
 
-    
+
 
     public function __construct()
     {
@@ -28,7 +28,18 @@ class Inventory
     // Retrieve all data
     public function all()
     {
-        return $this->task->all();
+        $data = $this->task->all();
+        return $data;
     }
+
+
+
+
+    public function find($spareParts_id)
+    {
+        return $this->task->find($spareParts_id); // Fetch by primary key (assuming id is the primary key)
+    }
+
+
 }
 ?>

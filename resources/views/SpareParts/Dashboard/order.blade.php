@@ -55,7 +55,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers">80</div>
-                        <div class="cardName">Process Orders</div>
+                        <div class="cardName">Deliverd Orders</div>
                     </div>
 
                     <div class="iconBx">

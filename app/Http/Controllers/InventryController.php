@@ -36,8 +36,32 @@ class InventryController extends Controller
     public function show()
      {
 
+        // $response['tasks'] = InventoryFacade::all();
+        // return view ('SpareParts.Dashboard.inventory.inventry_view')->with($response);
+
+
         $response['tasks'] = InventoryFacade::all();
-        return view ('SpareParts.Dashboard.inventory.inventry_view')->with($response);
+        return view('SpareParts.Dashboard.inventory.inventry_view')->with($response);
+
+
+
      }
+
+
+
+
+
+     public function updateView($spareParts_id)
+{
+    $task = InventoryFacade::find($spareParts_id); // Correctly fetch the task
+    if (!$task) {
+        return redirect()->route('inventory')->with('error', 'Item not found.');
+    }
+    return view('SpareParts.Dashboard.inventory.update.inventory_update', compact('task'));
+}
+
+
+
+
 
 }

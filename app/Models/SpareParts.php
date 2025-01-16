@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SpareParts extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'spareParts_id';
 
 
 

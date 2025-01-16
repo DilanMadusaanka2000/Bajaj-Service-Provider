@@ -62,6 +62,8 @@
         <th>stock</th>
         <th>description</th>
         <th>imgname</th>
+        <th> publish</th>
+        <th>Update</th>
 
 
       </tr>
@@ -70,7 +72,8 @@
       @foreach ($tasks as $key => $task)
       <tr>
         {{-- <td>{{ $key + 1 }}</td> <!-- Increment correctly --> --}}
-        <td>{{ $task->id }}</td>
+        <td>{{ $task->spareParts_id ?? 'No ID' }}</td> <!-- Debug output -->
+
         <td>{{ $task->name }}</td>
         <td>{{ $task->category }}</td>
         <td>{{ $task->price }}</td>
@@ -78,7 +81,7 @@
         <td>{{ $task->stock }}</td>
         <td>{{ $task->description }}</td>
         <td>{{ $task->imgname }}</td>
-        
+
         {{-- <td>{{ $task->column_10 ?? 'N/A' }}</td> <!-- Replace 'N/A' with default or dynamic value -->
         <td>{{ $task->column_11 ?? 'N/A' }}</td> <!-- Replace 'N/A' with default or dynamic value --> --}}
 
@@ -87,6 +90,18 @@
                {{ $task->status === 'completed' ? 'Completed' : 'Done' }}
             </button>
          </td>
+
+         <td>
+            @if(isset($task->spareParts_id))
+                <a href="{{ route('inventory.update.view', ['id' => $task->spareParts_id]) }}">
+                    <button>Update</button>
+                </a>
+            @else
+                <button onclick="showError()">Update</button>
+            @endif
+        </td>
+
+
 
 
 

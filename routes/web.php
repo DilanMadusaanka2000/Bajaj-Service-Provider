@@ -132,6 +132,8 @@ Route :: prefix('/sp/dashboard/inventrory')->group(function(){
     Route::get('/', [InventryController::class, 'index'])->name('inventory');
     Route::get('/form', [InventryController::class, 'inventroyForm'])->name('inventory.form');
     Route::get('/form/view', [InventryController::class, 'show'])->name('inventory.view');
+    Route::get('/form/update/{id}', [InventryController::class, 'updateView'])->name('inventory.update.view');
+
 
     Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store');
     Route::post('/maintain-request/{id}/status', [InventryController::class, 'update'])->name('update');
