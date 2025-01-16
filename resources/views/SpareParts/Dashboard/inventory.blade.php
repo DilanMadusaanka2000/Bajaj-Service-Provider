@@ -42,6 +42,7 @@
             <!-- ======================= Cards ================== -->
             <div class="cardBox">
                 <div class="card">
+                    <a href="{{ route('inventory.view') }}" style="text-decoration: none; color: inherit;">
                     <div>
                         <div class="numbers">1,504</div>
                         <div class="cardName">view inventory</div>
@@ -50,6 +51,7 @@
                     <div class="iconBx">
                         <ion-icon name="eye-outline"></ion-icon>
                     </div>
+                </a>
                 </div>
 
 
@@ -64,6 +66,7 @@
                         <div class="iconBx">
                             <ion-icon name="cart-outline"></ion-icon>
                         </div>
+
                     </a>
                 </div>
 

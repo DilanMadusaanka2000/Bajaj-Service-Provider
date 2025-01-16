@@ -32,4 +32,12 @@ class InventryController extends Controller
     }
 
 
+
+    public function show()
+     {
+
+        $response['tasks'] = InventoryFacade::all();
+        return view ('SpareParts.Dashboard.inventory.inventry_view')->with($response);
+     }
+
 }
