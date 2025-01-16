@@ -80,7 +80,13 @@
         <td>{{ $task->discount }}</td>
         <td>{{ $task->stock }}</td>
         <td>{{ $task->description }}</td>
-        <td>{{ $task->imgname }}</td>
+        <td>
+            @if($task->image)
+                <img src="{{ asset('storage/' . $task->image) }}" alt="Image" style="width: 30px; height: 30px;">
+            @else
+                No Image
+            @endif
+        </td>
 
         {{-- <td>{{ $task->column_10 ?? 'N/A' }}</td> <!-- Replace 'N/A' with default or dynamic value -->
         <td>{{ $task->column_11 ?? 'N/A' }}</td> <!-- Replace 'N/A' with default or dynamic value --> --}}
