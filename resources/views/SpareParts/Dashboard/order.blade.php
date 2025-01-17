@@ -41,16 +41,18 @@
 
             <!-- ======================= Cards ================== -->
             <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">View Orders</div>
-                    </div>
+                <a href="{{ route('orders.view') }}" class="card-link">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">1,504</div>
+                            <div class="cardName">View Orders</div>
+                        </div>
 
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
+                        <div class="iconBx">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <div class="card">
                     <div>

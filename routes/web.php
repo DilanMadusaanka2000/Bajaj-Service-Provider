@@ -58,17 +58,16 @@ Route::get('/', function () {
 
  //spare parts ordering
 
-// Route :: prefix('/home/spare-parts')->group(function(){
-
-//     //Route :: get('/',[SparePartsController::class, "index"])->name('home');
-//     Route::get('/', [SparePartsController::class, 'index'])->name('home');
-//     Route::get('/shop', [SparePartsController::class, 'shop'])->name('shop');
-//     Route::get('/cart', [SparePartsController::class, 'cart'])->name('cart');
-//     Route::get('/orders', [SparePartsController::class, 'orders'])->name('orders');
-//     Route::get('/category/{category}', [SparePartsController::class, 'category'])->name('category');
+Route :: prefix('/home/spare-parts')->group(function(){
 
 
-// });
+    Route::get('/', [SparePartsController::class, 'index'])->name('home');
+    Route::get('/spare-parts/{spareParts_id}', [SparePartsController::class, 'show'])->name('spareparts.buy'); // Detail page
+    Route::post('/order/store', [SparePartsController::class, 'store'])->name('order.store');
+
+
+
+});
 
 
 
@@ -114,6 +113,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard1', function () 
 
 
 
+
+
+
+
+
+
+
 //dashboard
 
 Route :: prefix('/sp/dashboard')->group(function(){
@@ -147,6 +153,8 @@ Route :: prefix('/sp/dashboard/inventrory')->group(function(){
 Route :: prefix('/sp/dashboard/order')->group(function(){
 
     Route::get('/', [OrderController::class, 'index'])->name('order');
+    Route::get('/view', [OrderController::class, 'showorder'])->name('orders.view');
+
 
 
 });
