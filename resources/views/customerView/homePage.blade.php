@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bajaj Service Center</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <style>
     /* Reset and Base Styles */
     * {
@@ -251,26 +253,28 @@
   <section class="features-section">
     <h3>Explore Our Services</h3>
     <div class="features-grid">
-      <a href="{{ route('maintain') }}" class="feature-item">
-        <img src="https://via.placeholder.com/50" alt="Service Booking Icon">
-        <h4>Service Booking</h4>
-        <p>Top-notch maintenance solutions to keep your vehicle running smoothly.</p>
+      <a href="{{ route('maintain') }}" class="feature-item " style=color:#003366;>
+      <i class="fa fa-calendar fa-3x" aria-hidden="true"></i>
+      <h4>Service Booking</h4>
+      <p>Top-notch maintenance solutions to keep your vehicle running smoothly.</p>
       </a>
 
       <div class="feature-item">
-        <img src="https://via.placeholder.com/50" alt="Spare Parts Icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        
+        <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
         <h4>Spare Parts</h4>
         <p>High-quality spare parts for all types of Bajaj vehicles.</p>
       </div>
 
       <div class="feature-item">
-        <img src="https://via.placeholder.com/50" alt="Vehicle Maintenance Icon">
+      <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
         <h4>Vehicle Maintenance</h4>
         <p>Book your vehicle's service easily through our online platform.</p>
       </div>
 
       <div class="feature-item">
-        <img src="https://via.placeholder.com/50" alt="Customer Support Icon">
+      <i class="fa fa-users fa-3x" aria-hidden="true"></i>
         <h4>Customer Support</h4>
         <p>Get assistance with any issues or queries about our services.</p>
       </div>
