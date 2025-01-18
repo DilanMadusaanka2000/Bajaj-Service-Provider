@@ -8,22 +8,34 @@ use App\Http\Controllers\SparePartsController;
 use App\Http\Controllers\SparpartsDashbordController;
 use App\Http\Controllers\InventryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
+
 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route :: get('/welcome',[LoginController::class, "index"])->name('welcome1');
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard1');
-//     })->name('dashboard1');
-// });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('welcome1');
+    })->name('welcome1');
+});
+
+
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
 
 
 
@@ -34,6 +46,13 @@ Route::get('/', function () {
 
  //customer View HomePage
  //Route :: get('/home',[CustomerHomeController::class, "index"])->name('home');
+
+ //setting
+ //user Rols & Permission
+
+ Route :: get('/setting',[SettingController::class, "index"])->name('setting');
+
+
 
 
 
@@ -64,26 +83,13 @@ Route :: prefix('/home/spare-parts')->group(function(){
     Route::get('/', [SparePartsController::class, 'index'])->name('home');
     Route::get('/spare-parts/{spareParts_id}', [SparePartsController::class, 'show'])->name('spareparts.buy'); // Detail page
     Route::post('/order/store', [SparePartsController::class, 'store'])->name('order.store');
+    Route::get('/order/auth/login', [SparePartsController::class, 'login'])->name('order.login');
+    Route::get('/order/auth/register', [AuthController::class, 'register'])->name('order.register');
+
 
 
 
 });
-
-
-
-
-
-
-
-
-// Route::get('/test-navbar', function () {
-//     return view('SpareParts.Components.navbar');
-// });
-
-
-
-
-
 
 
 
@@ -98,17 +104,6 @@ Route :: prefix('/home/spare-parts')->group(function(){
      //Route::get('/maintain-request/time',[DashbordController::class, "maintainrequest"])->name('maintain.request.time');
 
  });
-
- //setting
- //user Rols & Permission
-
- Route :: get('/setting',[SettingController::class, "index"])->name('setting');
-
-
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard1', function () {
-    return view('dashboard1');
-})->name('dashboard');
 
 
 

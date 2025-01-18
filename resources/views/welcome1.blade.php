@@ -216,33 +216,11 @@
         <li><a href="#">Services</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="#">About Us</a></li>
-        @if (Route::has('login'))
+      
     <nav class="-mx-3 flex flex-1 justify-end" style="display: flex; justify-content: flex-end; margin-left: -12px; margin-right: -12px;">
-        @auth
-            <!-- Dashboard Button -->
-            <a href="{{ route('welcome1') }}"
-                class="rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400"
-                style="padding: 8px 16px; background-color: #E2E8F0; color: #4A5568; border-radius: 4px; border: 1px solid transparent; text-decoration: none; display: inline-block; font-size: 1rem; font-weight: 500; transition: background-color 0.3s; cursor: pointer;">
-                View
-            </a>
-        @else
-            <!-- Login Button -->
-            <a href="{{ route('login') }}"
-                class="rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400"
-                style="padding: 8px 16px; background-color: #E2E8F0; color: #4A5568; border-radius: 4px; border: 1px solid transparent; text-decoration: none; display: inline-block; font-size: 1rem; font-weight: 500; transition: background-color 0.3s; cursor: pointer;">
-                Log in
-            </a>
-            @if (Route::has('register'))
-                <!-- Register Button -->
-                <a href="{{ route('register') }}"
-                    class="ml-3 rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400"
-                    style="margin-left: 12px; padding: 8px 16px; background-color: #E2E8F0; color: #4A5568; border-radius: 4px; border: 1px solid transparent; text-decoration: none; display: inline-block; font-size: 1rem; font-weight: 500; transition: background-color 0.3s; cursor: pointer;">
-                    Register
-                </a>
-            @endif
-        @endauth
+
     </nav>
-@endif
+
 
       </ul>
     </nav>
@@ -259,7 +237,36 @@
   </section>
 
   <!-- Features Section -->
+  <section class="features-section">
+    <h3>Explore Our Services</h3>
+    <div class="features-grid">
+      <a href="{{ route('maintain') }}" class="feature-item " style="color:#003366;">
+        <i class="fa fa-calendar fa-3x" aria-hidden="true"></i>
+        <h4>Service Booking</h4>
+        <p>Top-notch maintenance solutions to keep your vehicle running smoothly.</p>
+      </a>
 
+      <div class="feature-item">
+        <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+        <a href="{{ route('home') }}">
+          <h4>Spare Parts</h4>
+        </a>
+        <p>High-quality spare parts for all types of Bajaj vehicles.</p>
+      </div>
+
+      <div class="feature-item">
+        <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+        <h4>Vehicle Maintenance</h4>
+        <p>Book your vehicle's service easily through our online platform.</p>
+      </div>
+
+      <div class="feature-item">
+        <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+        <h4>Customer Support</h4>
+        <p>Get assistance with any issues or queries about our services.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer Section -->
   <footer>

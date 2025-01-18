@@ -25,7 +25,7 @@ class SparePartsController extends Controller
 
     public function show($id)
     {
-        $sparePart = SpareParts::findOrFail($id); // Fetch the spare part by ID
+        $sparePart = SpareParts::findOrFail($id);// Fetch the spare part by ID
         return view('SpareParts.HomePage.buy.spare_parts_buy', compact('sparePart')); // Pass data to the detail view
     }
 
@@ -62,6 +62,19 @@ class SparePartsController extends Controller
 
     return redirect()->back()->with('success', 'Order placed successfully!');
 }
+
+
+
+
+   public function login(){
+
+
+   }
+
+   public function register(){
+
+    
+   }
 
 
 
