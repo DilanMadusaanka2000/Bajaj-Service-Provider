@@ -67,13 +67,14 @@ class SparePartsController extends Controller
 
 
    public function login(){
+    
 
 
    }
 
    public function register(){
 
-    
+
    }
 
 

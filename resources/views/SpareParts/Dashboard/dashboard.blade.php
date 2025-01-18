@@ -61,7 +61,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('user') }}">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>

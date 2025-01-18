@@ -10,6 +10,7 @@ use App\Http\Controllers\InventryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserManagmentController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -119,10 +120,16 @@ Route :: prefix('/home/spare-parts')->group(function(){
 
 Route :: prefix('/sp/dashboard')->group(function(){
 
-    Route::get('/', [SparpartsDashbordController::class, 'index'])->name('dashbord');
+
+    Route::get('/', [SparpartsDashbordController::class, 'login'])->name('dashbord.login');
+    Route::post('/sp/dashboard/login', [SparpartsDashbordController::class, 'authenticate'])->name('login.authenticate');
+   // Route::get('/registration', [SparpartsDashbordController::class, 'registration'])->name('dashbord.registration');
+    Route::get('/maintain', [SparpartsDashbordController::class, 'index'])->name('dashbord.maintain');
 
 
 });
+
+
 
 
 
@@ -153,3 +160,15 @@ Route :: prefix('/sp/dashboard/order')->group(function(){
 
 
 });
+
+
+Route :: prefix('/sp/dashboard/user')->group(function(){
+
+
+    Route::get('/', [UserManagmentController::class, 'index'])->name('user');
+    Route::get('/add', [UserManagmentController::class, 'addpage'])->name('user.add');
+
+
+
+});
+

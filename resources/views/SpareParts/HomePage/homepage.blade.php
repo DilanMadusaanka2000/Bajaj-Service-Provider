@@ -86,6 +86,10 @@
     <div class="container">
         <h1>Spare Parts Shop</h1>
         <div class="grid">
+            
+
+
+
             @foreach ($spareParts as $part)
                 <div class="card">
                     @if ($part->image)
