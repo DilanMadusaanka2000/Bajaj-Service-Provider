@@ -44,7 +44,7 @@ Route::get('/', function () {
 
  Route :: prefix('/home')->group(function(){
 
-     Route :: get('/',[CustomerHomeController::class, "index"])->name('home');
+     Route :: get('/',[CustomerHomeController::class, "index"])->name('home1');
      Route :: get('/home2',[VehicleServiceController::class, "index"])->name('home2');
      Route :: get('/maintain',[CustomerHomeController::class, "maintain"])->name('maintain');
      Route :: post('/maintain/store',[CustomerHomeController::class, "store"])->name('maintain.store');

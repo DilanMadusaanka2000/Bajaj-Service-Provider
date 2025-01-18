@@ -233,8 +233,8 @@
         <li><a href="#">Services</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="#">About Us</a></li>
-        {{-- <li><a href="#" class="auth-button">Login</a></li>
-        <li><a href="#" class="auth-button">Register</a></li> --}}
+        <li><a href="#" class="auth-button">Login</a></li>
+        <li><a href="#" class="auth-button">Register</a></li>
       </ul>
     </nav>
   </header>
@@ -262,11 +262,8 @@
       <div class="feature-item">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-
         <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
-        <a href="{{ route('home') }}">
         <h4>Spare Parts</h4>
-        </a>
         <p>High-quality spare parts for all types of Bajaj vehicles.</p>
       </div>
 
@@ -290,3 +287,38 @@
   </footer>
 </body>
 </html>
+
+
+
+
+
+
+
+//
+
+
+
+  @if (Route::has('login'))
+                <nav class="-mx-3 flex flex-1 justify-end">
+                    @auth
+                        <!-- Dashboard Button -->
+                        <a href="{{ url('/dashboard') }}"
+                            class="rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400">
+                            Dashboard
+                        </a>
+                    @else
+                        <!-- Login Button -->
+                        <a href="{{ route('login') }}"
+                            class="rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400">
+                            Log in
+                        </a>
+                        @if (Route::has('register'))
+                            <!-- Register Button -->
+                            <a href="{{ route('register') }}"
+                                class="ml-3 rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400">
+                                Register
+                            </a>
+                        @endif
+                    @endauth
+                </nav>
+            @endif
