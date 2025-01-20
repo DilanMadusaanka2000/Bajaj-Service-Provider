@@ -21,22 +21,7 @@ class CommentController extends Controller
         return view('SpareParts.HomePage.comment', compact('sparePart', 'comments'));
     }
 
-    // In your controller's addComment method
-public function addComment(Request $request, $spareParts_id)
-{
-    $request->validate([
-        'comment' => 'required|string|max:500',
-    ]);
 
-    // Save the comment
-    Comment::create([
-        'spareParts_id' => $spareParts_id,  // Note that the column is 'spareParts_id'
-        'user_id' => auth()->id(),
-        'comment' => $request->input('comment'),
-    ]);
 
-    return redirect()->route('spareparts.comments', ['spareParts_id' => $spareParts_id])
-                     ->with('success', 'Comment added successfully!');
-}
 
 }

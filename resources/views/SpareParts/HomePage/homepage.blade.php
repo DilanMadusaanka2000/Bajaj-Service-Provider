@@ -158,6 +158,57 @@
             margin-right: 8px;
         }
 
+        .comment-section {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9fafb;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            resize: none;
+            font-size: 1rem;
+        }
+
+        .comment-form button {
+            margin-top: 10px;
+            background-color: #3182ce;
+            color: white;
+            padding: 12px 0;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-form button:hover {
+            background-color: #2c5282;
+        }
+
+        .comment {
+            margin-top: 10px;
+            padding: 12px;
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .comment .author {
+            font-weight: bold;
+        }
+
+        .comment .date {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px 10px;
@@ -208,6 +259,18 @@
                         <a href="{{ route('spareparts.comments', ['spareParts_id' => $part->spareParts_id]) }}" class="btn" style="background-color: #4caf50; margin-top: 10px;">
                             <i class="fas fa-comments"></i> View Comments
                         </a>
+
+                        <!-- Comment Section -->
+                        <div class="comment-section">
+                            <h4>Leave a Comment</h4>
+                            <form class="comment-form" action="{{ route('spareparts.add_comment', ['spareParts_id' => $part->spareParts_id]) }}" method="POST">
+                                @csrf
+                                <textarea name="comment" rows="4" placeholder="Write your comment..."></textarea>
+                                <button type="submit">Submit Comment</button>
+                            </form>
+
+                            
+                        </div>
                     </div>
                 </div>
             @endforeach

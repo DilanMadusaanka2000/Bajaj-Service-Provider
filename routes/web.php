@@ -105,6 +105,7 @@ Route :: prefix('/home/spare-parts')->group(function(){
    // Route::post('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
 
     Route::get('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'showComments'])->name('spareparts.comments');
+    Route::post('/spare-parts/{spareParts_id}/comments', [SparePartsController::class, 'addComment'])->name('spareparts.add_comment');
 
 
 

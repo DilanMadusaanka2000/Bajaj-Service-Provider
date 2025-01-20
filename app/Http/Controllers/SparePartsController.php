@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SpareParts;
 use App\Models\Order;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
+
 
 class SparePartsController extends Controller
 {
@@ -67,7 +70,7 @@ class SparePartsController extends Controller
 
 
    public function login(){
-    
+
 
 
    }
@@ -75,6 +78,29 @@ class SparePartsController extends Controller
    public function register(){
 
 
+   }
+
+
+
+
+
+   public function addComment(Request $request, $spareParts_id)
+   {
+       // Validate the input
+       $request->validate([
+           'comment' => 'required|string|max:1000',
+       ]);
+
+       // Create a new comment
+       $comment = new Comment();
+       $comment->spareParts_id = $spareParts_id;
+       $comment->user_id = Auth::id(); // Optionally use auth if the user is logged in
+       $comment->comment = $request->comment;
+       $comment->save();
+
+       // Redirect back to the product page with a success message
+       return redirect()->route('spareparts.comments', ['spareParts_id' => $spareParts_id])
+                        ->with('success', 'Your comment has been added.');
    }
 
 
