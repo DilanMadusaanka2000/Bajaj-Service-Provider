@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserManagmentController;
+use App\Http\Controllers\CommentController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route :: get('/welcome',[LoginController::class, "index"])->name('welcome1');
+//Route::post('home/spare-parts/spareparts/{sparePart_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
+// In your routes/web.php
+//Route::post('home/spare-parts/spareparts/{spareParts_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
+
 
 
 Route::middleware([
@@ -86,6 +91,21 @@ Route :: prefix('/home/spare-parts')->group(function(){
     Route::post('/order/store', [SparePartsController::class, 'store'])->name('order.store');
     Route::get('/order/auth/login', [SparePartsController::class, 'login'])->name('order.login');
     Route::get('/order/auth/register', [AuthController::class, 'register'])->name('order.register');
+    // Route::get('/comment', [CommentController::class, 'index'])->name('spareparts.comments');
+    //Route::get('/spareparts/{spareParts_id}/comments', [CommentController::class, 'showComments'])->name('spareparts.comments');
+    //Route::post('/spareparts/{spareParts_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
+    //Route::get('/spareparts/{sparePart_id}/comments', [CommentController::class, 'showComments'])->name('spareparts.comments');
+   // Route::post('/spareparts/{sparePart_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
+
+    //new add from doyya
+
+   //Route::post('/spareparts/{spareParts_id}/comments', [SparePartsController::class, 'addComment'])->name('spareparts.add_comment');
+
+    //Route::post('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
+   // Route::post('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
+
+    Route::get('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'showComments'])->name('spareparts.comments');
+
 
 
 

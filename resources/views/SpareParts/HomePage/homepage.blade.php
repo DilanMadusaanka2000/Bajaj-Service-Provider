@@ -205,6 +205,9 @@
                         <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn">
                             <i class="fas fa-shopping-cart"></i>Buy Now
                         </a>
+                        <a href="{{ route('spareparts.comments', ['spareParts_id' => $part->spareParts_id]) }}" class="btn" style="background-color: #4caf50; margin-top: 10px;">
+                            <i class="fas fa-comments"></i> View Comments
+                        </a>
                     </div>
                 </div>
             @endforeach
