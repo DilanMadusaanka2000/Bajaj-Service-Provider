@@ -147,6 +147,12 @@ Route :: prefix('/sp/dashboard/inventrory')->group(function(){
     Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store');
     Route::post('/maintain-request/{id}/status', [InventryController::class, 'update'])->name('update');
 
+    Route::put('/inventory/update/{id}', [InventryController::class, 'store'])->name('inventory.form.update');
+    Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store'); // For creating
+    Route::put('/form/update/{id}', [InventryController::class, 'store'])->name('inventory.form.update'); // For updating
+
+
+
 });
 
 

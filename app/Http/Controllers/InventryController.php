@@ -23,8 +23,6 @@ class InventryController extends Controller
 
 
 
-    
-
     public function store(Request $request)
 {
     $validatedData = $request->validate([
@@ -34,20 +32,24 @@ class InventryController extends Controller
         'discount' => 'required|numeric',
         'stock' => 'required|integer',
         'description' => 'nullable|string',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
+    // Handle image upload
     if ($request->hasFile('image')) {
-        // Save the uploaded image
         $imagePath = $request->file('image')->store('spare_parts', 'public');
-        $validatedData['image'] = $imagePath; // Store the image path
+        $validatedData['image'] = $imagePath;
     }
 
-    // Save to the database
-    InventoryFacade::store($validatedData);
+    // Check if this is an update or a new record
+    $sparePartsId = $request->input('id');
+    InventoryFacade::store($validatedData, $sparePartsId);
 
-    return redirect()->back()->with('success', 'Spare part added successfully!');
+    $message = $sparePartsId ? 'Spare part updated successfully!' : 'Spare part added successfully!';
+    return redirect()->route('inventory')->with('success', $message);
 }
+
+
 
 
 
@@ -75,13 +77,14 @@ class InventryController extends Controller
      //update
 
      public function updateView($spareParts_id)
-{
-    $task = InventoryFacade::find($spareParts_id); // Correctly fetch the task
-    if (!$task) {
-        return redirect()->route('inventory')->with('error', 'Item not found.');
-    }
-    return view('SpareParts.Dashboard.inventory.inventroy', compact('task'));
-}
+     {
+         $task = InventoryFacade::find($spareParts_id); // Correctly fetch the task
+         if (!$task) {
+             return redirect()->route('inventory')->with('error', 'Item not found.');
+         }
+         return view('SpareParts.Dashboard.inventory.update.inventory_update', compact('task'));
+     }
+
 
 
 

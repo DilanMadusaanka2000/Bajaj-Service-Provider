@@ -18,20 +18,21 @@ class Inventory
 
 
     // Store data
-    public function store($data)
+    public function store($data, $sparePartsId = null)
     {
-        $this->task->create([
-            'name' => $data['name'],
-            'category' => $data['category'],
-            'price' => $data['price'],
-            'discount' => $data['discount'],
-            'stock' => $data['stock'],
-            'description' => $data['description'] ?? null,
-            'image' => $data['image'], // Save the image path
-        ]);
+        if ($sparePartsId) {
+            // Update the record if an ID is provided
+            $sparePart = $this->task->find($sparePartsId);
+            if ($sparePart) {
+                $sparePart->update($data);
+                return $sparePart;
+            }
+        }
+        // Create a new record if no ID is provided
+        $this->task->create($data);
     }
 
-    
+
 
 
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Spare Part</title>
+    <title>{{ isset($task) ? 'Update Spare Part' : 'Add Spare Part' }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,15 +61,21 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Add Spare Part</h2>
-        <!-- Form starts -->
-        <form action="{{ route('inventory.form.store') }}" method="POST" enctype="multipart/form-data">
+        <h2>{{ isset($task) ? 'Update Spare Part' : 'Add Spare Part' }}</h2>
+        <form action="{{ isset($task) ? route('inventory.form.update', $task->spareParts_id) : route('inventory.form.store') }}"
+              method="POST" enctype="multipart/form-data">
+              @method('PUT')
             @csrf
+            @if(isset($task))
+                @method('PUT')
+                <input type="hidden" name="id" value="{{ $task->spareParts_id }}">
+            @endif
 
             <!-- Item Name -->
             <div class="form-group">
                 <label for="item-name">Item Name</label>
-                <input type="text" id="item-name" name="name" value="{{ old('name', $task->name ?? '') }}" placeholder="Enter item name" required>
+                <input type="text" id="item-name" name="name"
+                       value="{{ old('name', $task->name ?? '') }}" placeholder="Enter item name" required>
                 @error('name')
                 <span class="error">{{ $message }}</span>
                 @enderror
@@ -79,7 +85,7 @@
             <div class="form-group">
                 <label for="category">Category</label>
                 <select id="category" name="category" required>
-                    <option value="" disabled selected>Select a category</option>
+                    <option value="" disabled {{ !isset($task) ? 'selected' : '' }}>Select a category</option>
                     <option value="engine" {{ old('category', $task->category ?? '') == 'engine' ? 'selected' : '' }}>Engine</option>
                     <option value="brakes" {{ old('category', $task->category ?? '') == 'brakes' ? 'selected' : '' }}>Brakes</option>
                     <option value="suspension" {{ old('category', $task->category ?? '') == 'suspension' ? 'selected' : '' }}>Suspension</option>
@@ -94,7 +100,8 @@
             <!-- Price -->
             <div class="form-group">
                 <label for="price">Price (LKR)</label>
-                <input type="number" id="price" name="price" value="{{ old('price', $task->price ?? '') }}" placeholder="Enter price" required>
+                <input type="number" id="price" name="price"
+                       value="{{ old('price', $task->price ?? '') }}" placeholder="Enter price" required>
                 @error('price')
                 <span class="error">{{ $message }}</span>
                 @enderror
@@ -103,7 +110,8 @@
             <!-- Discount -->
             <div class="form-group">
                 <label for="discount">Discount (LKR)</label>
-                <input type="number" id="discount" name="discount" value="{{ old('discount', $task->discount ?? '') }}" placeholder="Enter discount" required>
+                <input type="number" id="discount" name="discount"
+                       value="{{ old('discount', $task->discount ?? '') }}" placeholder="Enter discount" required>
                 @error('discount')
                 <span class="error">{{ $message }}</span>
                 @enderror
@@ -112,7 +120,8 @@
             <!-- Stock Quantity -->
             <div class="form-group">
                 <label for="stock">Stock Quantity</label>
-                <input type="number" id="stock" name="stock" value="{{ old('stock', $task->stock ?? '') }}" placeholder="Enter stock quantity" required>
+                <input type="number" id="stock" name="stock"
+                       value="{{ old('stock', $task->stock ?? '') }}" placeholder="Enter stock quantity" required>
                 @error('stock')
                 <span class="error">{{ $message }}</span>
                 @enderror
@@ -121,7 +130,8 @@
             <!-- Description -->
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" placeholder="Enter item description" rows="4">{{ old('description', $task->description ?? '') }}</textarea>
+                <textarea id="description" name="description"
+                          placeholder="Enter item description" rows="4">{{ old('description', $task->description ?? '') }}</textarea>
                 @error('description')
                 <span class="error">{{ $message }}</span>
                 @enderror
@@ -130,7 +140,7 @@
             <!-- Image Upload -->
             <div class="form-group">
                 <label for="image">Upload Image</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <input type="file" id="image" name="image" accept="image/*" {{ isset($task) ? '' : 'required' }}>
                 @error('image')
                 <span class="error">{{ $message }}</span>
                 @enderror
@@ -138,11 +148,9 @@
 
             <!-- Submit Button -->
             <div class="form-group">
-                <button type="submit">Update Inventory</button>
+                <button type="submit">{{ isset($task) ? 'Update Spare Part' : 'Add to Inventory' }}</button>
             </div>
         </form>
-
-        <!-- Form ends -->
     </div>
 </body>
 </html>

@@ -99,11 +99,12 @@
 
          <td>
             @if(isset($task->spareParts_id))
-                <a href="{{ route('inventory.update.view', ['id' => $task->spareParts_id]) }}">
-                    <button>Update</button>
+            <a href="{{ route('inventory.update.view', ['id' => $task->spareParts_id]) }}">
+                <button>Update</button>
+            </a>
                 </a>
             @else
-                <button onclick="showError()">Update</button>
+                <button onclick="showError()">Updated!</button>
             @endif
         </td>
 
