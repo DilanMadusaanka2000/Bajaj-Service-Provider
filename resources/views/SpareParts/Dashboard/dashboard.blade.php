@@ -103,7 +103,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('order.login') }}">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -136,8 +136,8 @@
             <div class="cardBox">
                 <div class="card">
                     <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
+                        <div class="numbers">{{ $sparePartsCount }}</div>
+                        <div class="cardName">Spare Parts</div>
                     </div>
 
                     <div class="iconBx">
@@ -147,8 +147,8 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
+                        <div class="numbers">{{ $vehicleMaintainCount }}</div>
+                        <div class="cardName">Vehicle Maintain</div>
                     </div>
 
                     <div class="iconBx">
@@ -158,8 +158,8 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
+                        <div class="numbers">{{ $ordersCount }}</div>
+                        <div class="cardName">Orders</div>
                     </div>
 
                     <div class="iconBx">

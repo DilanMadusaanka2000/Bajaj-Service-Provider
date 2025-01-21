@@ -42,7 +42,7 @@
             <!-- ======================= Cards ================== -->
             <div class="cardBox">
                 <div class="card">
-                    <a href="{{ route('inventory.view') }}" style="text-decoration: none; color: inherit;">
+                    <a href="{{ route('view.register') }}" style="text-decoration: none; color: inherit;">
                     <div>
                         <div class="numbers">1,504</div>
                         <div class="cardName">View User</div>

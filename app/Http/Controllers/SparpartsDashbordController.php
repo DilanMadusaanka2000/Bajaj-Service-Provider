@@ -1,7 +1,12 @@
 <?php
 
 
+
 namespace App\Http\Controllers;
+use App\Models\VehicleMaintain;
+use App\Models\Order;
+use App\Models\SpareParts;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\RegisterSP;  // Import the RegisterSP model
@@ -17,7 +22,15 @@ class SparpartsDashbordController extends Controller
     // Show the dashboard (after login)
     public function index()
     {
-        return view('SpareParts.Dashboard.dashboard');
+        $vehicleMaintainCount = VehicleMaintain::count();
+        $ordersCount = Order::count();
+        $sparePartsCount = SpareParts::count();
+
+        return view('SpareParts.Dashboard.dashboard', [
+            'vehicleMaintainCount' => $vehicleMaintainCount,
+            'sparePartsCount' => $sparePartsCount,
+            'ordersCount' => $ordersCount, // Fixed the key name
+        ]);
     }
 
     // Handle the login form submission

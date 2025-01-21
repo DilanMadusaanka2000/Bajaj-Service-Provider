@@ -180,8 +180,11 @@ Route :: prefix('/sp/dashboard/order')->group(function(){
     Route::get('/', [OrderController::class, 'index'])->name('order');
     Route::get('/view', [OrderController::class, 'showorder'])->name('orders.view');
     Route::post('/view/update-status/{order_id}', [OrderController::class, 'updateStatus'])->name('update-status');
-    
-    Route::get('/search', [OrderController::class, 'searchOrders'])->name('orders.search');
+
+    Route::get('/search', [OrderController::class, '3
+
+
+    '])->name('orders.search');
 
 
 
@@ -200,6 +203,11 @@ Route :: prefix('/sp/dashboard/user')->group(function(){
 
     Route::get('/', [UserManagmentController::class, 'index'])->name('user');
     Route::get('/add', [UserManagmentController::class, 'addpage'])->name('user.add');
+    Route::post('/register', [UserManagmentController::class, 'register'])->name('user.register');
+    Route::get('/register/view', [UserManagmentController::class, 'viewUser'])->name('view.register');
+   // Route::get('/view-users', [UserManagmentController::class, 'viewUser'])->name('view-users');
+    // In your routes/web.php
+    Route::get('/edit/{id}', [UserManagmentController::class, 'editPage'])->name('user.edit');
 
 
 

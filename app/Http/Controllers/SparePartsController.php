@@ -8,6 +8,10 @@ use App\Models\Order;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Mail\OrderPlacedMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 
 
@@ -54,15 +58,62 @@ class SparePartsController extends Controller
 
 
 
+
+
     public function store(Request $request)
-{
-    //dd($request);
+    {
+        // Validate the request
+        $request->validate([
+            'spareParts_id' => 'required|exists:spare_parts,spareParts_id', // Ensure 'id' matches your database field
+            'quantity' => 'required|integer|min:1',
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|digits:10',
+            'postal_code' => 'required|digits:5',
+        ]);
 
-    $this->task->create($request->all());
+        try {
+            // Start a database transaction
+            \DB::beginTransaction();
 
-     return redirect()->route('home');
+            // Create the order
+            $order = $this->task->create($request->all());
 
-}
+            // Update the stock
+            $sparePart = SpareParts::findOrFail($request->spareParts_id);
+
+            if ($sparePart->stock < $request->quantity) {
+                // Rollback the transaction and throw an exception if stock is insufficient
+                \DB::rollBack();
+                return redirect()->back()->with('error', 'Insufficient stock for the selected spare part.');
+            }
+
+            // Deduct the ordered quantity from the stock
+            $sparePart->stock -= $request->quantity;
+            $sparePart->save();
+
+            // Commit the transaction
+            \DB::commit();
+
+            // Send email to the logged-in user
+            $userEmail = Auth::user()->email; // Get the logged-in user's email
+            Mail::to($userEmail)->send(new OrderPlacedMail($order));
+
+            // Log success message
+            Log::info('Order placed and email sent successfully to: ' . $userEmail);
+
+            return redirect()->route('home')->with('success', 'Order placed successfully! An email has been sent.');
+        } catch (Exception $e) {
+            // Rollback the transaction if an error occurs
+            \DB::rollBack();
+
+            // Log error details
+            Log::error('Error while placing the order: ' . $e->getMessage());
+
+            return redirect()->route('home')->with('error', 'Something went wrong. Please try again.');
+        }
+    }
+
 
 
 

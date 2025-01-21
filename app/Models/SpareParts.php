@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SpareParts extends Model
 {
     use HasFactory;
+    
     protected $primaryKey = 'spareParts_id';
+    public $incrementing = false; // If it's not an auto-incrementing field
+    protected $keyType = 'string'; // If the ID is a string
 
 
 

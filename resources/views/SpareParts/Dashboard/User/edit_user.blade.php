@@ -12,16 +12,17 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card" style="width: 25rem;">
             <div class="card-body">
-                <h5 class="card-title text-center">Register</h5>
+                <h5 class="card-title text-center">{{ isset($task) ? 'Edit User' : 'Register' }}</h5>
                 <form method="POST" action="{{ route('user.register') }}">
                     @csrf
+                    <input type="hidden" name="id" value="{{ isset($task) ? $task->id : '' }}"> <!-- Hidden input for ID -->
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ isset($task) ? $task->name : '' }}" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ isset($task) ? $task->email : '' }}" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -35,15 +36,16 @@
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status" required>
-                            <option value="admin">Admin</option>
-                            <option value="subadmin">Subadmin</option>
-                            <option value="manager">Manager</option>
-                            <option value="user">User</option>
-                            <option value="guest">Guest</option>
+                            <option value="admin" {{ isset($task) && $task->status == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="subadmin" {{ isset($task) && $task->status == 'subadmin' ? 'selected' : '' }}>Subadmin</option>
+                            <option value="manager" {{ isset($task) && $task->status == 'manager' ? 'selected' : '' }}>Manager</option>
+                            <option value="user" {{ isset($task) && $task->status == 'user' ? 'selected' : '' }}>User</option>
+                            <option value="guest" {{ isset($task) && $task->status == 'guest' ? 'selected' : '' }}>Guest</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block">{{ isset($task) ? 'Update' : 'Register' }}</button>
                 </form>
+
                 <div class="text-center mt-3">
                     <a href="{{ route('login') }}">Already have an account? Login here</a>
                 </div>
