@@ -179,10 +179,20 @@ Route :: prefix('/sp/dashboard/order')->group(function(){
 
     Route::get('/', [OrderController::class, 'index'])->name('order');
     Route::get('/view', [OrderController::class, 'showorder'])->name('orders.view');
+    Route::post('/view/update-status/{order_id}', [OrderController::class, 'updateStatus'])->name('update-status');
+    
+    Route::get('/search', [OrderController::class, 'searchOrders'])->name('orders.search');
+
+
+
 
 
 
 });
+//Route::post('/sp/dashboard/order/update-status/{id}', [OrderController::class, 'updateStatus']);
+//Route::post('/sp/dashboard/order/update-status/{id}', [OrderController::class, 'updateStatus'])->name('update-status');
+
+
 
 
 Route :: prefix('/sp/dashboard/user')->group(function(){
