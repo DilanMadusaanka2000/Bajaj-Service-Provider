@@ -38,6 +38,7 @@
         <input
           type="text"
           name="phone"
+          pattern="^\d{10}$"
           placeholder="Enter phone number"
           required
         />
@@ -121,6 +122,7 @@
         <input
           type="date"
           name="date"
+          id="maintenance-date"
           required
         />
       </div>
@@ -279,4 +281,67 @@
       }
     }
 </style>
+@endpush
+
+
+@push('js')
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  const emailInput = document.querySelector('input[name="email"]');
+  const phoneInput = document.querySelector('input[name="phone"]');
+  const dateInput = document.getElementById('maintenance-date');
+  const timeSlotInput = document.querySelector('input[name="time_slot"]');
+
+  // Validate email format
+  function validateEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
+
+  // Validate phone number format (10 digits)
+  function validatePhoneNumber(phone) {
+    const phonePattern = /^\d{10}$/;
+    return phonePattern.test(phone);
+  }
+
+  // Form submit handler
+  form.addEventListener('submit', function (event) {
+    let isValid = true;
+
+    // Check if email is valid
+    if (!validateEmail(emailInput.value)) {
+      alert('Please enter a valid email address (missing @).');
+      isValid = false;
+    }
+
+    // Check if phone number is valid (10 digits)
+    if (!validatePhoneNumber(phoneInput.value)) {
+      alert('Phone number must be exactly 10 digits.');
+      isValid = false;
+    }
+
+    // Check if fields are empty
+    if (!emailInput.value || !phoneInput.value || !dateInput.value || !timeSlotInput.value) {
+      alert('All fields are required.');
+      isValid = false;
+    }
+
+    if (!isValid) {
+      event.preventDefault(); // Prevent form submission if validation fails
+    }
+  });
+
+  // Set the minimum date for maintenance date
+  if (dateInput) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    dateInput.min = formattedDate; // Set the min attribute directly
+  }
+});
+
+</script>
 @endpush

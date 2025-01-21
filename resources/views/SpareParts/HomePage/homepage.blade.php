@@ -254,6 +254,12 @@
     background-color: #2c5282;
 }
 
+
+.btn:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+}
+
     </style>
 </head>
 <body>
@@ -264,7 +270,7 @@
         </div>
 
         <div class="header">
-            
+
             <!-- Search Form -->
             <form method="GET" action="{{ route('home') }}" class="search-form">
                 <input type="text" name="search" placeholder="Search spare parts..." value="{{ request('search') }}">
@@ -287,18 +293,41 @@
                     <div class="card-content">
                         <h3>{{ $part->name }}</h3>
                         <div class="price-container">
-                            <span class="price">${{ number_format($part->price - ($part->discount ?? 0), 2) }}</span>
+                            <span class="price">Rs{{ number_format($part->price - ($part->discount ?? 0), 2) }}</span>
                             @if ($part->discount)
-                                <span class="discount">${{ number_format($part->price, 2) }}</span>
+                                <span class="discount">Rs{{ number_format($part->price, 2) }}</span>
                             @endif
                         </div>
-                        <span class="stock-status {{ $part->stock > 0 ? 'in-stock' : 'out-of-stock' }}">
-                            <i class="fas {{ $part->stock > 0 ? 'fa-check-circle' : 'fa-times-circle' }}"></i>
-                            {{ $part->stock > 0 ? 'In Stock' : 'Out of Stock' }}
+                        <span class="stock-status {{ $part->stock > 20 ? 'in-stock' : 'out-of-stock' }}">
+                            <i class="fas {{ $part->stock > 20 ? 'fa-check-circle' : 'fa-times-circle' }}"></i>
+                            {{ $part->stock > 20 ? 'In Stock' : 'Out of Stock' }}
                         </span>
-                        <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn">
+                        {{-- <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn"
+                            {{ $part->stock > 0 ? '' : 'disabled' }}>
                             <i class="fas fa-shopping-cart"></i>Buy Now
-                        </a>
+                         </a> --}}
+
+                         {{-- <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn"
+                            {{ $part->stock > 20 ? '' : 'disabled' }}>
+                            <i class="fas fa-shopping-cart"></i>Buy Now
+                         </a> --}}
+
+                         {{-- <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn"
+                            {{ $part->stock <= 20 ? 'disabled' : '' }}>
+                             <i class="fas fa-shopping-cart"></i> Buy Now
+                         </a> --}}
+
+                         @if($part->stock <= 20)
+    <button class="btn" disabled><i class="fas fa-shopping-cart"></i> Out of Stock</button>
+@else
+    <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn">
+        <i class="fas fa-shopping-cart"></i> Buy Now
+    </a>
+@endif
+
+
+
+
                         <a href="{{ route('spareparts.comments', ['spareParts_id' => $part->spareParts_id]) }}" class="btn" style="background-color: #4caf50; margin-top: 10px;">
                             <i class="fas fa-comments"></i> View Comments
                         </a>

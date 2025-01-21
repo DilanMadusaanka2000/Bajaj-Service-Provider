@@ -103,7 +103,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('order.login') }}">
+                    <a href="{{ route('login.authenticate') }}">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
