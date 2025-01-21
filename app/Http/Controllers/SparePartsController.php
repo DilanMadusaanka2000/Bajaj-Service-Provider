@@ -7,10 +7,20 @@ use App\Models\SpareParts;
 use App\Models\Order;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 
 class SparePartsController extends Controller
 {
+
+
+    protected $task;
+
+    public function __construct()
+    {
+        $this->task = new Order();
+    }
     // public function index(){
 
     //     return view('SpareParts.HomePage.homepage');
@@ -40,36 +50,21 @@ class SparePartsController extends Controller
         return view('SpareParts.HomePage.buy.spare_parts_buy', compact('sparePart')); // Pass data to the detail view
     }
 
+
+
+
+
     public function store(Request $request)
-        {
-        // Validate the incoming data
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|digits:10',
-            'postal_code' => 'required|digits:5',
-            'quantity' => 'required|integer|min:1',
-            'sparePart_id' => 'required|integer|exists:spare_parts,spareParts_id',
-        ]);
+{
+    //dd($request);
 
-        // Dump the validated data here
-        dd($validated);
+    $this->task->create($request->all());
 
-        // If the data looks correct, proceed with storing it in the database
-        Order::create([
-            'name' => $validated['name'],
-            'address' => $validated['address'],
-            'phone' => $validated['phone'],
-            'postal_code' => $validated['postal_code'],
-            'spare_part_name' => $validated['name'],
-            'status' => 'pending',
-            'spareParts_id' => $validated['sparePart_id'],
-            'quantity' => $validated['quantity'],
-        ]);
+     return redirect()->route('home');
 
-        // Redirect with success message
-        return redirect()->back()->with('success', 'Order placed successfully!');
-    }
+}
+
+
 
 
 

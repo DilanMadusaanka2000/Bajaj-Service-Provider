@@ -207,7 +207,7 @@
             @csrf
 
             <h2>Cash on Delivery Details</h2>
-            <input type="hidden" name="spareParts_id" value="{{ $sparePart->spareParts_id }}">
+
             <input type="hidden" name="price" value="{{ $sparePart->price }}">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -216,7 +216,9 @@
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" maxlength="10" pattern="\d{10}" required>
             <label for="postal-code">Postal Code:</label>
-            <input type="text" id="postal-code" name="postal_code" placeholder="Enter your postal code" maxlength="5" pattern="\d{5}" required>
+            <input type="text" id="postal_code" name="postal_code" placeholder="Enter your postal code" maxlength="5" pattern="\d{5}" required>
+            <input type="hidden" name="spare_part_name" value="{{ $sparePart->name }}">
+            <input type="hidden" name="spareParts_id" value="{{ $sparePart->spareParts_id }}">
             <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1" required>
             <button type="submit">Submit</button>
@@ -227,6 +229,7 @@
         function showDeliveryDetails() {
             document.getElementById('deliveryDetails').style.display = 'block';
         }
+
     </script>
 </body>
 </html>
