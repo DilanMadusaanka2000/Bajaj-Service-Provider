@@ -52,7 +52,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('vehicle') }}">
                         <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
                         </span>

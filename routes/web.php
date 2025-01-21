@@ -12,6 +12,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserManagmentController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\vehicleContoller;
+use App\Http\Controllers\IncomeController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -61,23 +64,29 @@ Route::middleware([
 
 
 
+ //Route :: post('/home/maintain/save-time', [CustomerHomeController::class, 'saveTime'])->name('customer.savetime');
 
 
 
 
  //Customer Vehicle Maintain Crude
 
- Route :: prefix('/home')->group(function(){
+ Route::prefix('/home')->group(function () {
+    Route::get('/', [CustomerHomeController::class, "index"])->name('home1');
+    Route::get('/maintain', [CustomerHomeController::class, "maintain"])->name('maintain');
+    Route::post('/maintain/store', [CustomerHomeController::class, "store"])->name('maintain.store');
+   // Route::get('/maintain/time', [CustomerHomeController::class, "time"])->name('time');
 
-     Route :: get('/',[CustomerHomeController::class, "index"])->name('home1');
-     Route :: get('/home2',[VehicleServiceController::class, "index"])->name('home2');
-     Route :: get('/maintain',[CustomerHomeController::class, "maintain"])->name('maintain');
-     Route :: post('/maintain/store',[CustomerHomeController::class, "store"])->name('maintain.store');
-     Route :: get ('/maintain/time',[CustomerHomeController::class,"time"])->name('time');
-     Route :: post('/maintain/save-time', [CustomerHomeController::class, 'saveTime'])->name('saveTime');
+    //Route::post('/maintain/save-time', [CustomerHomeController::class, 'saveTime'])->name('savetime');
 
 
- });
+});
+
+
+
+
+
+
 
 
 
@@ -91,19 +100,6 @@ Route :: prefix('/home/spare-parts')->group(function(){
     Route::post('/order/store', [SparePartsController::class, 'store'])->name('order.store');
     Route::get('/order/auth/login', [SparePartsController::class, 'login'])->name('order.login');
     Route::get('/order/auth/register', [AuthController::class, 'register'])->name('order.register');
-    // Route::get('/comment', [CommentController::class, 'index'])->name('spareparts.comments');
-    //Route::get('/spareparts/{spareParts_id}/comments', [CommentController::class, 'showComments'])->name('spareparts.comments');
-    //Route::post('/spareparts/{spareParts_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
-    //Route::get('/spareparts/{sparePart_id}/comments', [CommentController::class, 'showComments'])->name('spareparts.comments');
-   // Route::post('/spareparts/{sparePart_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
-
-    //new add from doyya
-
-   //Route::post('/spareparts/{spareParts_id}/comments', [SparePartsController::class, 'addComment'])->name('spareparts.add_comment');
-
-    //Route::post('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
-   // Route::post('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
-
     Route::get('home/spare-parts/spareparts/{spareParts_id}', [CommentController::class, 'showComments'])->name('spareparts.comments');
     Route::post('/spare-parts/{spareParts_id}/comments', [SparePartsController::class, 'addComment'])->name('spareparts.add_comment');
 
@@ -198,4 +194,38 @@ Route :: prefix('/sp/dashboard/user')->group(function(){
 
 
 });
+
+
+//vehile maintain
+Route :: prefix('/sp/dashboard/vehiclemaintain')->group(function(){
+
+
+    Route::get('/', [vehicleContoller::class, 'index'])->name('vehicle');
+    Route::get('/vehicle/view', [vehicleContoller::class, 'view'])->name('vehicle.view');
+
+    Route::get('/view/maintain', [vehicleContoller::class, 'view'])->name('vehicle.search');
+    Route::put('/update-status/{id}', [vehicleContoller::class, 'updateStatus'])->name('vehicle.updateStatus');
+
+
+
+
+});
+
+
+
+Route :: prefix('/sp/dashboard/vehiclemaintain/income')->group(function(){
+
+
+    Route::get('/', [IncomeController::class, 'index'])->name('income');
+
+
+
+
+
+});
+
+
+
+
+
 

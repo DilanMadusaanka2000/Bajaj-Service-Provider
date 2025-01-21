@@ -1,8 +1,6 @@
 @extends('layouts.service')
 
-
 @section('content')
-
 <section class="container">
     <header>Vehicle Maintenance and Service Form</header>
     <form
@@ -81,23 +79,23 @@
         <label>Maintenance and Repair Services</label>
         <div class="checkbox-group">
           <div>
-            <input type="checkbox" id="oil-change" name="maintenance_services" value="Oil Change" />
+            <input type="checkbox" id="oil-change" name="maintenance_services[]" value="Oil Change" />
             <label for="oil-change">Oil Change</label>
           </div>
           <div>
-            <input type="checkbox" id="tire-replacement" name="maintenance_services" value="Tire Replacement" />
+            <input type="checkbox" id="tire-replacement" name="maintenance_services[]" value="Tire Replacement" />
             <label for="tire-replacement">Tire Replacement</label>
           </div>
           <div>
-            <input type="checkbox" id="brake-services" name="maintenance_services" value="Brake Services" />
+            <input type="checkbox" id="brake-services" name="maintenance_services[]" value="Brake Services" />
             <label for="brake-services">Brake Services</label>
           </div>
           <div>
-            <input type="checkbox" id="fluid-checks" name="maintenance_services" value="Fluid Checks" />
+            <input type="checkbox" id="fluid-checks" name="maintenance_services[]" value="Fluid Checks" />
             <label for="fluid-checks">Fluid Checks</label>
           </div>
           <div>
-            <input type="checkbox" id="oil-filter-replacement" name="maintenance_service" value="Oil Filter Replacement" />
+            <input type="checkbox" id="oil-filter-replacement" name="maintenance_services[]" value="Oil Filter Replacement" />
             <label for="oil-filter-replacement">Oil Filter Replacement</label>
           </div>
         </div>
@@ -117,19 +115,34 @@
         </div>
       </div>
 
+      <!-- Date Selection -->
+      <div class="input-box">
+        <label>Select Maintenance Date</label>
+        <input
+          type="date"
+          name="date"
+          required
+        />
+      </div>
+
+      <!-- Time Slot -->
+      <div class="input-box">
+        <label>Select Time Slot</label>
+        <input
+          type="text"
+          name="time_slot"
+          placeholder="Enter preferred time slot"
+          required
+        />
+      </div>
+
       <!-- Submit Button -->
       <button type="submit">Submit</button>
     </form>
   </section>
-
 @endsection
 
-
-
-
-
 @push('css')
-
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
@@ -265,5 +278,5 @@
         min-width: 100%;
       }
     }
-  </style>
+</style>
 @endpush

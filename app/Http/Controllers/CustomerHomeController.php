@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\VehicleMaintain; // Import the VehicleMaintain model
-use App\Models\MaintainTime; // Import the MaintainTime model
+use Illuminate\Support\Facades\Auth;
+use App\Models\MaintainTime;
 
 class CustomerHomeController extends Controller
 {
@@ -25,41 +26,59 @@ class CustomerHomeController extends Controller
         return view('customerView.vehicle_Maintenance.vehicleMaintain');
     }
 
+
+
+
     public function store(Request $request)
-    {
-        // Save vehicle maintenance record
-        $vehicleMaintain = $this->task->create($request->all());
-
-        // Redirect to time selection form with the maintain ID and vehicle number
-        return redirect()->route('time', [
-            'maintain_id' => $vehicleMaintain->id,
-            'vehicle_number' => $vehicleMaintain->vehicle_number
-        ])->with('success', 'Vehicle maintenance record saved successfully.');
-    }
-
-    public function time(Request $request)
-    {
-        // Load the time selection form
-        return view('dashboard1.maintainRequestTime', [
-            'maintain_id' => $request->maintain_id,
-            'vehicle_number' => $request->vehicle_number,
-        ]);
-    }
-
-
-    
-    public function saveTime(Request $request)
-    {
-        // Save the selected date and time
-        MaintainTime::create([
-            'maintain_id' => $request->maintain_id,
-            'vehicle_number' => $request->vehicle_number,
-            'date' => $request->date,
-            'time_slot' => $request->time_slot,
+{
+    try {
+        // Validate the incoming request
+        $validatedData = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:15',
+            'vehicle_type' => 'required|string',
+            'vehicle_name' => 'required|string',
+            'vehicle_number' => 'required|string',
+            'maintenance_services' => 'required|array', // Changed from 'string' to 'array'
+            'wash_type' => 'required|string',
+            'date' => 'required|date',
+            'time_slot' => 'required|string',
         ]);
 
-        return redirect()->route('home')->with('success', 'Time slot selected successfully.');
+        // Convert the maintenance services array to a comma-separated string or JSON string
+        $maintenanceServices = implode(', ', $validatedData['maintenance_services']); // or json_encode($validatedData['maintenance_services']);
+
+        // Create the VehicleMaintain record in the database
+        VehicleMaintain::create([
+            'full_name' => $validatedData['full_name'],
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
+            'vehicle_type' => $validatedData['vehicle_type'],
+            'vehicle_name' => $validatedData['vehicle_name'],
+            'vehicle_number' => $validatedData['vehicle_number'],
+            'maintenance_services' => $maintenanceServices, // Store as a string
+            'wash_type' => $validatedData['wash_type'],
+            'date' => $validatedData['date'],
+            'time_slot' => $validatedData['time_slot'],
+            'user_id' => Auth::id(),
+        ]);
+
+        // Success message or redirection
+        return redirect()->route('maintain')->with('success', 'Vehicle maintenance request submitted successfully!');
+    } catch (\Exception $e) {
+        // Log the error
+        \Log::error('Error saving maintenance record: ' . $e->getMessage());
+        dd($e->getMessage()); // Show the error message in case of failure
     }
+}
+
+
+
+
+
+
+
 
 
     //update

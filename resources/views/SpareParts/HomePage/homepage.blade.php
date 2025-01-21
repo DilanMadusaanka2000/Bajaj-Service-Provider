@@ -224,6 +224,36 @@
                 padding: 10px;
             }
         }
+
+
+
+        .search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-form input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #2c5282;
+}
+
     </style>
 </head>
 <body>
@@ -232,6 +262,19 @@
             <h1>Premium Spare Parts</h1>
             <p>Discover quality automotive parts for your vehicle maintenance needs</p>
         </div>
+
+        <div class="header">
+            
+            <!-- Search Form -->
+            <form method="GET" action="{{ route('home') }}" class="search-form">
+                <input type="text" name="search" placeholder="Search spare parts..." value="{{ request('search') }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+
+
+
         <div class="grid">
             @foreach ($spareParts as $part)
                 <div class="card">
@@ -269,7 +312,7 @@
                                 <button type="submit">Submit Comment</button>
                             </form>
 
-                            
+
                         </div>
                     </div>
                 </div>

@@ -9,13 +9,12 @@
 <body class="bg-gradient-to-r from-blue-500 to-blue-800 text-black min-h-screen flex items-center justify-center">
     <div class="container max-w-lg mx-auto bg-white rounded-lg shadow-lg p-6">
         <h1 class="text-3xl font-extrabold text-blue-700 mb-6 text-center">Select Date and Time</h1>
-        <form action="{{ route('saveTime') }}" method="POST" class="space-y-6">
+        <form action="{{ route('savetime') }}" method="POST" class="space-y-6">
 
             @csrf
-
             <!-- Hidden Inputs -->
-            <input type="hidden" name="maintain_id" value="{{ $maintain_id }}">
-            <input type="hidden" name="vehicle_number" value="{{ $vehicle_number }}">
+            {{-- <input type="hidden" name="maintain_id" value="{{ $maintain_id }}">
+            <input type="hidden" name="vehicle_number" value="{{ $vehicle_number }}"> --}}
 
             <!-- Date Picker -->
             <div>
@@ -38,20 +37,9 @@
                     required
                     class="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-700 shadow focus:border-blue-500 focus:ring focus:ring-blue-200 transition ease-in-out duration-200"
                 >
-                <option value="" disabled selected>Select a time slot</option>
-                <option value="7:00 AM - 8:00 AM">7:00 AM - 8:00 AM</option>
-                <option value="8:00 AM - 9:00 AM">8:00 AM - 9:00 AM</option>
-                <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
-                <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
-                <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
-                <option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
-                <option value="1:00 PM - 2:00 PM">1:00 PM - 2:00 PM</option>
-                <option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
-                <option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
-                <option value="4:00 PM - 5:00 PM">4:00 PM - 5:00 PM</option>
-                <option value="5:00 PM - 6:00 PM">5:00 PM - 6:00 PM</option>
-                <option value="6:00 PM - 7:00 PM">6:00 PM - 7:00 PM</option>
-                <option value="7:00 PM - 8:00 PM">7:00 PM - 8:00 PM</option>
+                    <option value="" disabled selected>Select a time slot</option>
+                    <option value="7:00 AM - 8:00 AM">7:00 AM - 8:00 AM</option>
+                    <option value="8:00 AM - 9:00 AM">8:00 AM - 9:00 AM</option>
                     <!-- Add other time slots here -->
                 </select>
             </div>
@@ -66,6 +54,7 @@
                 </button>
             </div>
         </form>
+
     </div>
 </body>
 </html>
