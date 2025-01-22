@@ -130,12 +130,18 @@
       <!-- Time Slot -->
       <div class="input-box">
         <label>Select Time Slot</label>
-        <input
-          type="text"
-          name="time_slot"
-          placeholder="Enter preferred time slot"
-          required
-        />
+        <div class="select-box">
+          <select name="time_slot" required>
+            <option hidden>Select a time slot</option>
+            <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+            <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+            <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+            <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+            <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+            <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+            <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+          </select>
+        </div>
       </div>
 
       <!-- Submit Button -->

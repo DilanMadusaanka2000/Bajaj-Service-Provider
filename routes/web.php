@@ -22,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about', function () {
+    return view('about');
+});
+
+
 Route :: get('/welcome',[LoginController::class, "index"])->name('welcome1');
 //Route::post('home/spare-parts/spareparts/{sparePart_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
 // In your routes/web.php
@@ -208,6 +213,8 @@ Route :: prefix('/sp/dashboard/user')->group(function(){
    // Route::get('/view-users', [UserManagmentController::class, 'viewUser'])->name('view-users');
     // In your routes/web.php
     Route::get('/edit/{id}', [UserManagmentController::class, 'editPage'])->name('user.edit');
+    Route::delete('/delete/{id}', [UserManagmentController::class, 'destroy'])->name('user.delete');
+
 
 
 
@@ -240,6 +247,23 @@ Route :: prefix('/sp/dashboard/vehiclemaintain/income')->group(function(){
 
 
 
+});
+
+
+
+
+
+Route::get('/test-mail', function () {
+    try {
+        // Send a simple test email
+        Mail::raw('Test email content', function ($message) {
+            $message->to('madusankadilan226@gmail.com')->subject('Test Email');
+        });
+        return 'Email sent successfully!';
+    } catch (\Exception $e) {
+        // Catch and display any errors that occur
+        return 'Error: ' . $e->getMessage();
+    }
 });
 
 

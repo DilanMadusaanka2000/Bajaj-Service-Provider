@@ -14,7 +14,17 @@
     <!-- =============== Navigation ================ -->
     <div class="container">
 
+        <div class="user">
+            {{-- <img src="assets/imgs/customer01.jpg" alt=""> --}}
+                <a href="{{ route('dashbord.login') }}">
 
+                    <button type="submit" style="border: none; background: none; color: inherit; cursor: pointer;">
+                        <ion-icon name="log-out-outline"></ion-icon> Logout
+                    </button>
+                </a>
+
+
+        </div>
 
 
 
@@ -44,7 +54,7 @@
                 <div class="card">
                     <a href="{{ route('inventory.view') }}" style="text-decoration: none; color: inherit;">
                     <div>
-                        <div class="numbers">1,504</div>
+                        <div class="numbers">9</div>
                         <div class="cardName">view inventory</div>
                     </div>
 
@@ -59,7 +69,7 @@
                 <div class="card" style="cursor: pointer;">
                     <a href="{{ route('inventory.form') }}" style="text-decoration: none; color: inherit;">
                         <div>
-                            <div class="numbers">80</div>
+                            <div class="numbers">ADD</div>
                             <div class="cardName">Add Spare Parts</div>
                         </div>
 
@@ -80,7 +90,7 @@
                 <a href="{{ route('inventory.view.lowquantity') }}" style="text-decoration: none; color: inherit;">
 
                     <div>
-                        <div class="numbers">$7,842</div>
+                        <div class="numbers">8</div>
                         <div class="cardName">Low Stock Alert</div>
                     </div>
 
@@ -109,63 +119,7 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
 
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
 

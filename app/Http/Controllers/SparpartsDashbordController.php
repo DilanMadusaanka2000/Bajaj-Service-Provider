@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\VehicleMaintain;
 use App\Models\Order;
 use App\Models\SpareParts;
+use App\Models\UserManagement;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use App\Models\RegisterSP;  // Import the RegisterSP model
 
 class SparpartsDashbordController extends Controller
 {
+    
     // Show the login form
     public function login()
     {
@@ -33,6 +35,9 @@ class SparpartsDashbordController extends Controller
         ]);
     }
 
+
+
+
     // Handle the login form submission
     public function authenticate(Request $request)
     {
@@ -43,12 +48,31 @@ class SparpartsDashbordController extends Controller
         ]);
 
         // Attempt to find a user with the provided email
-        $user = RegisterSP::where('email', $validated['email'])->first();
+        $user = UserManagement::where('email', $validated['email'])->first();
 
         // Check if the user exists and the passwords match
         if ($user && $user->password === $validated['password']) {
             // Login success
-            return redirect()->route('dashbord.maintain');
+
+
+
+            if ($user->status === 'admin') {
+                return redirect()->route('dashbord.maintain');
+
+            } elseif ($user->status === 'subadmin') {
+                return redirect()->route('inventory');
+            } elseif ($user->status === 'manager') {
+                return redirect()->route('vehicle');
+            }
+
+            else {
+                return back()->withErrors(['login_error' => 'Invalid credentials. Please try again.']);
+            }
+
+
+
+
+
         } else {
             // If login fails, reload the login page with an error message
             return back()->withErrors(['login_error' => 'Invalid credentials. Please try again.']);

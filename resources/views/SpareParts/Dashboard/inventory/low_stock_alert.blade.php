@@ -64,8 +64,8 @@
         <td><img src="{{ asset('images/' . $item->imgname) }}" alt="{{ $item->name }}" width="50"></td>
 
         <td>
-            @if(isset($task->spareParts_id))
-                <a href="{{ route('inventory.update.view', ['id' => $task->spareParts_id]) }}">
+            @if(isset($item->spareParts_id))
+                <a href="{{ route('inventory.update.view', ['id' => $item->spareParts_id]) }}">
                     <button>Update</button>
                 </a>
             @else

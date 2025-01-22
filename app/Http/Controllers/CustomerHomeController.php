@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\VehicleMaintain; // Import the VehicleMaintain model
 use Illuminate\Support\Facades\Auth;
 use App\Models\MaintainTime;
+use App\Mail\VehicleMaintenanceMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class CustomerHomeController extends Controller
 {
@@ -47,7 +50,8 @@ class CustomerHomeController extends Controller
         ]);
 
         // Convert the maintenance services array to a comma-separated string or JSON string
-        $maintenanceServices = implode(', ', $validatedData['maintenance_services']); // or json_encode($validatedData['maintenance_services']);
+        $maintenanceServices = implode(', ', $validatedData['maintenance_services']);
+       // $maintenanceServices = implode(', ', $validatedData['maintenance_services']);// or json_encode($validatedData['maintenance_services']);
 
         // Create the VehicleMaintain record in the database
         VehicleMaintain::create([
@@ -64,12 +68,29 @@ class CustomerHomeController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+
+
+        // //$validatedData['maintenance_services'] = $maintenanceServices;
+        // Mail::to($validatedData['email'])->send(new VehicleMaintenanceMail($validatedData));
+        // \Log::info('Email sent successfully to: ' . $validatedData['email']);
+       // $validatedData['maintenance_services'] = implode(', ', $validatedData['maintenance_services']);
+       $validatedData['maintenance_services'] = $maintenanceServices;
+        Mail::to($validatedData['email'])->send(new VehicleMaintenanceMail($validatedData));
+
+        \Log::info('Email sent successfully to: ' . $validatedData['email']);
+
+
+
+
         // Success message or redirection
         return redirect()->route('maintain')->with('success', 'Vehicle maintenance request submitted successfully!');
     } catch (\Exception $e) {
         // Log the error
         \Log::error('Error saving maintenance record: ' . $e->getMessage());
-        dd($e->getMessage()); // Show the error message in case of failure
+        //dd($e->getMessage()); // Show the error message in case of failure
+
+        \Log::error('Error sending email: ' . $e->getMessage());
+        dd('Error: ' . $e->getMessage());
     }
 }
 

@@ -211,7 +211,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>Amit <br> <span>India</span></h4>
+                                <h4>Dilan <br> <span>Sri Lanka</span></h4>
                             </td>
                         </tr>
 
@@ -220,7 +220,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>David <br> <span>Italy</span></h4>
+                                <h4>Isuru <br> <span>Sri Lanak</span></h4>
                             </td>
                         </tr>
 
@@ -229,7 +229,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>Amit <br> <span>India</span></h4>
+                                <h4>Amila <br> <span>Sri Lanak</span></h4>
                             </td>
                         </tr>
 
@@ -238,7 +238,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>David <br> <span>Italy</span></h4>
+                                <h4>Eshan <br> <span>Sri lanka</span></h4>
                             </td>
                         </tr>
 
@@ -247,7 +247,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>Amit <br> <span>India</span></h4>
+                                <h4>Test <br> <span>Sri Lanka</span></h4>
                             </td>
                         </tr>
 
@@ -256,7 +256,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>David <br> <span>Italy</span></h4>
+                                <h4>Test1 <br> <span>Sri Lanak</span></h4>
                             </td>
                         </tr>
 
@@ -265,7 +265,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>Amit <br> <span>India</span></h4>
+                                <h4>Test <br> <span>Sri Lanka</span></h4>
                             </td>
                         </tr>
                     </table>

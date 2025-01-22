@@ -44,7 +44,7 @@
                 <div class="card">
                     <a href="{{ route('view.register') }}" style="text-decoration: none; color: inherit;">
                     <div>
-                        <div class="numbers">1,504</div>
+                        <div class="numbers">{{ $UserManagementCount }}</div>
                         <div class="cardName">View User</div>
                     </div>
 
@@ -59,7 +59,7 @@
                 <div class="card" style="cursor: pointer;">
                     <a href="{{ route('user.add') }}" style="text-decoration: none; color: inherit;">
                         <div>
-                            <div class="numbers">80</div>
+                            <div class="numbers">Edit & Delete</div>
                             <div class="cardName">Add User</div>
                         </div>
 
@@ -87,68 +87,14 @@
                         <thead>
                             <tr>
                                 <td>Name</td>
-                                <td>Price</td>
-                                <td>Payment</td>
-                                <td>Status</td>
+                                <td>users</td>
+                                <td>role</td>
+                                <td>permissions</td>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
 
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

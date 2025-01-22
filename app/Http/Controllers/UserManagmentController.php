@@ -10,6 +10,7 @@ class UserManagmentController extends Controller
 {
 
 
+
     protected $task;
 
     public function __construct()
@@ -20,8 +21,10 @@ class UserManagmentController extends Controller
 
     public function index()
     {
-
-        return view('SpareParts.Dashboard.user');
+        $UserManagementCount = UserManagement::count();
+        return view('SpareParts.Dashboard.user' , [
+            'UserManagementCount' => $UserManagementCount,
+        ]);
     }
     public function addpage()
     {
@@ -90,6 +93,26 @@ class UserManagmentController extends Controller
             // Pass the user data to the register view for editing
             return view('SpareParts.Dashboard.User.edit_user', compact('task'));
         }
+
+
+
+public function destroy($id)
+{
+    try {
+        // Find the user by ID
+        $task = $this->task->findOrFail($id);
+
+        // Delete the user
+        $task->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('view.register')->with('success', 'User deleted successfully!');
+    } catch (\Exception $e) {
+        // Log the error and redirect back with an error message
+        \Log::error('Error deleting user: ' . $e->getMessage());
+        return redirect()->route('view.register')->with('error', 'Failed to delete user.');
+    }
+}
 
 
 }

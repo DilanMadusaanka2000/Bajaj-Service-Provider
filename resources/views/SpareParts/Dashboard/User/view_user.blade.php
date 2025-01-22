@@ -32,9 +32,11 @@
                         <td>
                             <!-- Edit Button -->
                             <a href="{{ route('user.edit', $task->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
+                            <form action="{{ route('user.delete', $task->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                @method('DELETE') <!-- Add this to specify the DELETE HTTP method -->
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
                             </form>
                         </td>
                     </tr>
