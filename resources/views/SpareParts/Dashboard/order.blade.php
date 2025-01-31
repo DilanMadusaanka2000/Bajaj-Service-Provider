@@ -96,63 +96,7 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
 
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
 
@@ -177,7 +121,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>Amit <br> <span>India</span></h4>
+                                <h4>isuru <br> <span>galle</span></h4>
                             </td>
                         </tr>
 
@@ -195,7 +139,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>Amit <br> <span>India</span></h4>
+                                <h4>Dilan <br> <span>Sri lanka</span></h4>
                             </td>
                         </tr>
 
@@ -204,7 +148,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>David <br> <span>Italy</span></h4>
+                                <h4>isuru <br> <span>sri lanka</span></h4>
                             </td>
                         </tr>
 
@@ -213,7 +157,7 @@
                                 <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
                             </td>
                             <td>
-                                <h4>Amit <br> <span>India</span></h4>
+                                <h4>isuru <br> <span>galle</span></h4>
                             </td>
                         </tr>
 

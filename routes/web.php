@@ -26,6 +26,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+//logout function
+Route :: post('/',[CustomerHomeController::class, "logout"])->name('logout');
+
+
 
 Route :: get('/welcome',[LoginController::class, "index"])->name('welcome1');
 //Route::post('home/spare-parts/spareparts/{sparePart_id}/comments', [CommentController::class, 'addComment'])->name('spareparts.add_comment');
@@ -43,6 +47,10 @@ Route::middleware([
         return view('welcome1');
     })->name('welcome1');
 });
+
+Route :: get('/',[LoginController::class, "index"])->name('welcome1');
+
+
 
 
 
@@ -69,7 +77,6 @@ Route::middleware([
 
 
 
- //Route :: post('/home/maintain/save-time', [CustomerHomeController::class, 'saveTime'])->name('customer.savetime');
 
 
 
@@ -163,12 +170,9 @@ Route :: prefix('/sp/dashboard/inventrory')->group(function(){
     Route::get('/form', [InventryController::class, 'inventroyForm'])->name('inventory.form');
     Route::get('/form/view', [InventryController::class, 'show'])->name('inventory.view');
     Route::get('/form/update/{id}', [InventryController::class, 'updateView'])->name('inventory.update.view');
-
     Route::get('/form/lowquantity', [InventryController::class, 'quantity'])->name('inventory.view.lowquantity');
-
     Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store');
     Route::post('/maintain-request/{id}/status', [InventryController::class, 'update'])->name('update');
-
     Route::put('/inventory/update/{id}', [InventryController::class, 'store'])->name('inventory.form.update');
     Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store'); // For creating
     Route::put('/form/update/{id}', [InventryController::class, 'store'])->name('inventory.form.update'); // For updating
@@ -185,11 +189,7 @@ Route :: prefix('/sp/dashboard/order')->group(function(){
     Route::get('/', [OrderController::class, 'index'])->name('order');
     Route::get('/view', [OrderController::class, 'showorder'])->name('orders.view');
     Route::post('/view/update-status/{order_id}', [OrderController::class, 'updateStatus'])->name('update-status');
-
-    Route::get('/search', [OrderController::class, '3
-
-
-    '])->name('orders.search');
+    Route::get('/search', [OrderController::class, '3'])->name('orders.search');
 
 
 
@@ -197,21 +197,16 @@ Route :: prefix('/sp/dashboard/order')->group(function(){
 
 
 });
-//Route::post('/sp/dashboard/order/update-status/{id}', [OrderController::class, 'updateStatus']);
-//Route::post('/sp/dashboard/order/update-status/{id}', [OrderController::class, 'updateStatus'])->name('update-status');
 
 
-
+//create users
 
 Route :: prefix('/sp/dashboard/user')->group(function(){
-
 
     Route::get('/', [UserManagmentController::class, 'index'])->name('user');
     Route::get('/add', [UserManagmentController::class, 'addpage'])->name('user.add');
     Route::post('/register', [UserManagmentController::class, 'register'])->name('user.register');
     Route::get('/register/view', [UserManagmentController::class, 'viewUser'])->name('view.register');
-   // Route::get('/view-users', [UserManagmentController::class, 'viewUser'])->name('view-users');
-    // In your routes/web.php
     Route::get('/edit/{id}', [UserManagmentController::class, 'editPage'])->name('user.edit');
     Route::delete('/delete/{id}', [UserManagmentController::class, 'destroy'])->name('user.delete');
 
@@ -224,10 +219,8 @@ Route :: prefix('/sp/dashboard/user')->group(function(){
 //vehile maintain
 Route :: prefix('/sp/dashboard/vehiclemaintain')->group(function(){
 
-
     Route::get('/', [vehicleContoller::class, 'index'])->name('vehicle');
     Route::get('/vehicle/view', [vehicleContoller::class, 'view'])->name('vehicle.view');
-
     Route::get('/view/maintain', [vehicleContoller::class, 'view'])->name('vehicle.search');
     Route::put('/update-status/{id}', [vehicleContoller::class, 'updateStatus'])->name('vehicle.updateStatus');
 
@@ -238,32 +231,19 @@ Route :: prefix('/sp/dashboard/vehiclemaintain')->group(function(){
 
 
 
-Route :: prefix('/sp/dashboard/vehiclemaintain/income')->group(function(){
-
-
-    Route::get('/', [IncomeController::class, 'index'])->name('income');
 
 
 
 
 
-});
-
-
-
-
-
+// In routes/web.php
 Route::get('/test-mail', function () {
-    try {
-        // Send a simple test email
-        Mail::raw('Test email content', function ($message) {
-            $message->to('madusankadilan226@gmail.com')->subject('Test Email');
-        });
-        return 'Email sent successfully!';
-    } catch (\Exception $e) {
-        // Catch and display any errors that occur
-        return 'Error: ' . $e->getMessage();
-    }
+    \Illuminate\Support\Facades\Mail::raw('This is a test email.', function ($message) {
+        $message->to('test@example.com') // Replace with your email
+                ->subject('Test Email');
+    });
+
+    return 'Email sent!';
 });
 
 

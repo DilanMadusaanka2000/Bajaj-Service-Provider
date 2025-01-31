@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Analyzer</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366;
+            padding: 15px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFCC00;
+        }
+
+        .contact-info span,
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        /* Container Styles */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #003d80;
+        }
+
+        .comments-list {
+            margin-top: 30px;
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+        .positive {
+            color: #28a745;
+        }
+
+        .negative {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Bajaj Spare Parts Providers</div>
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">SPARE PARTS</a></li>
+            <li><a href="#">SERVICE GALLERY</a></li>
+            <li><a href="#">ABOUT US</a></li>
+            <li><a href="#">COMMENT</a></li>
+        </ul>
+        <div class="contact-info">
+            <span>011-2400100</span>
+            <a href="mailto:BajajSPCS@gmail.com">BajajSPCS@gmail.com</a>
+        </div>
+    </nav>
+
+    <!-- Comment Analyzer -->
+    <div class="container">
+        <h2>Add comment about our product or service</h2>
+        <textarea id="comment" placeholder="Enter your comment here..."></textarea>
+        <button onclick="addComment()">Add Comment</button>
+    </div>
+
+    <!-- Comments List -->
+    <div class="container comments-list" id="commentsList">
+        <h3>Comments</h3>
+        <div id="comments"></div>
+    </div>
+
+   <script>
+async function addComment() {
+    const comment = document.getElementById('comment').value.trim();
+
+    if (!comment) {
+        alert('Please enter a comment.');
+        return;
+    }
+
+    const commentsDiv = document.getElementById('comments');
+    const commentItem = document.createElement('div');
+    commentItem.className = 'comment-item';
+
+    try {
+        // Call Flask backend to analyze the comment
+        const response = await fetch('http://localhost:5000/analyze-comment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ comment }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to analyze comment.');
+        }
+
+        const result = await response.json();
+
+        // Display the comment with sentiment
+        if (result.sentiment === 'POSITIVE') {
+            commentItem.classList.add('positive');
+            commentItem.innerHTML = `<strong>Positive Comment:</strong> ${comment}`;
+        } else if (result.sentiment === 'NEGATIVE') {
+            commentItem.classList.add('negative');
+            commentItem.innerHTML = `<strong>Negative Comment:</strong> ${comment}`;
+        } else {
+            commentItem.innerHTML = `<strong>Neutral Comment:</strong> ${comment}`;
+        }
+    } catch (error) {
+        commentItem.innerHTML = `<strong>Error:</strong> Unable to process comment. ${error.message}`;
+        commentItem.style.color = 'red';
+    }
+
+    commentsDiv.appendChild(commentItem);
+    document.getElementById('comment').value = '';
+}
+</script>
+
+
+</body>
+</html>

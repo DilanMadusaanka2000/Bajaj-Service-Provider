@@ -24,6 +24,15 @@ class CustomerHomeController extends Controller
         return view('customerView.homePage');
     }
 
+    //logout unction
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
+    }
+
+
+
     public function maintain()
     {
         return view('customerView.vehicle_Maintenance.vehicleMaintain');
@@ -76,6 +85,13 @@ class CustomerHomeController extends Controller
        // $validatedData['maintenance_services'] = implode(', ', $validatedData['maintenance_services']);
        $validatedData['maintenance_services'] = $maintenanceServices;
         Mail::to($validatedData['email'])->send(new VehicleMaintenanceMail($validatedData));
+
+
+        //event(new RegistrationCreated($registration));
+
+    // Send registration confirmation email
+    //Mail::to($registration->email)->send(new RegistrationConfirmation($registration));
+
 
         \Log::info('Email sent successfully to: ' . $validatedData['email']);
 

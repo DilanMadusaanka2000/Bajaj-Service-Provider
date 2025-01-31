@@ -216,8 +216,15 @@
         <li><a href="#">Services</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="#">About Us</a></li>
-      
+
     <nav class="-mx-3 flex flex-1 justify-end" style="display: flex; justify-content: flex-end; margin-left: -12px; margin-right: -12px;">
+
+
+        <a href="{{ route('logout') }}"
+                class="rounded-md px-3 py-2 text-gray-700 bg-gray-200 ring-1 ring-transparent transition hover:bg-gray-300 focus:outline-none focus-visible:ring-gray-400"
+                style="padding: 8px 16px; background-color: #E2E8F0; color: #4A5568; border-radius: 4px; border: 1px solid transparent; text-decoration: none; display: inline-block; font-size: 1rem; font-weight: 500; transition: background-color 0.3s; cursor: pointer;">
+                Logout
+        </a>
 
     </nav>
 
