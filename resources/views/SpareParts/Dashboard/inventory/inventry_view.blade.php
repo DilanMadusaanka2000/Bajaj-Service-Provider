@@ -108,6 +108,16 @@
             @endif
         </td>
 
+        <td>
+            <form action="{{ route('inventory.form.delete', ['id' => $task->spareParts_id]) }}" method="POST" onsubmit="return confirmDelete(event, {{ $task->spareParts_id }})">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="delete-button" style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+                    Delete
+                </button>
+            </form>
+        </td>
+
 
 
 
@@ -128,7 +138,14 @@
 
 
 
-
+  <script>
+    function confirmDelete(event, id) {
+        event.preventDefault();
+        if (confirm('Are you sure you want to delete this item?')) {
+            event.target.submit();
+        }
+    }
+</script>
 
 
 

@@ -194,6 +194,8 @@
             <div class="spare-part-info">
                 <h2 class="spare-part-name">{{ $sparePart->name }}</h2>
                 <p class="spare-part-price">Price: {{ $sparePart->price }} USD</p>
+                <p class="spare-part-price">About: {{ $sparePart->description }} USD</p>
+
                 <label for="quantity">Add Quantity:</label>
                 <input type="number" id="quantity" name="quantity" min="1" value="1">
                 <button class="buy-now-button" onclick="showDeliveryDetails()">Buy Now</button>

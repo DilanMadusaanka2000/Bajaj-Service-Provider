@@ -253,7 +253,7 @@
     <h2>Hi, How can we help?</h2>
     <p>Explore support articles or find the right service for your vehicle.</p>
     <div class="search-bar">
-      <input type="text" placeholder="Search using keywords...">
+      <input type="text" placeholder="Search">
       <button>Search</button>
     </div>
   </section>

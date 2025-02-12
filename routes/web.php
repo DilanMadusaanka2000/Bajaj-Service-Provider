@@ -26,9 +26,9 @@ Route::get('/about', function () {
     return view('about');
 });
 
-//logout function
-Route :: post('/',[CustomerHomeController::class, "logout"])->name('logout');
 
+//logout function
+Route::post('/logout', [CustomerHomeController::class, 'logout'])->name('logout');
 
 
 Route :: get('/welcome',[LoginController::class, "index"])->name('welcome1');
@@ -44,11 +44,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('welcome1');
-    })->name('welcome1');
+        return view('welcome');
+    })->name('welcome');
 });
 
-Route :: get('/',[LoginController::class, "index"])->name('welcome1');
+// Route :: get('/',[LoginController::class, "index"])->name('welcome1');
 
 
 
@@ -174,6 +174,7 @@ Route :: prefix('/sp/dashboard/inventrory')->group(function(){
     Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store');
     Route::post('/maintain-request/{id}/status', [InventryController::class, 'update'])->name('update');
     Route::put('/inventory/update/{id}', [InventryController::class, 'store'])->name('inventory.form.update');
+    Route::delete('/inventory/update/{id}', [InventryController::class, 'delete'])->name('inventory.form.delete');
     Route::post('/form', [InventryController::class, 'store'])->name('inventory.form.store'); // For creating
     Route::put('/form/update/{id}', [InventryController::class, 'store'])->name('inventory.form.update'); // For updating
 

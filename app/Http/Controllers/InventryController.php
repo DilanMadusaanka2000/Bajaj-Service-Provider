@@ -86,6 +86,22 @@ class InventryController extends Controller
      }
 
 
+     public function delete($spareParts_id){
+
+           // Find the item by ID
+    $task = InventoryFacade::find($spareParts_id);
+
+    if (!$task) {
+        return redirect()->back()->with('error', 'Item not found.');
+    }
+
+    // Delete the item
+    $task->delete();
+
+    return redirect()->back()->with('success', 'Item deleted successfully.');
+     }
+
+
 
 
 

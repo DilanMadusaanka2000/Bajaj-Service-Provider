@@ -318,12 +318,12 @@
                          </a> --}}
 
                          @if($part->stock <= 20)
-    <button class="btn" disabled><i class="fas fa-shopping-cart"></i> Out of Stock</button>
-@else
-    <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn">
-        <i class="fas fa-shopping-cart"></i> Buy Now
-    </a>
-@endif
+                            <button class="btn" disabled><i class="fas fa-shopping-cart"></i> Out of Stock</button>
+                        @else
+                             <a href="{{ route('spareparts.buy', ['spareParts_id' => $part->spareParts_id]) }}" class="btn">
+                              <i class="fas fa-shopping-cart"></i> Buy Now
+                             </a>
+                        @endif
 
 
 
