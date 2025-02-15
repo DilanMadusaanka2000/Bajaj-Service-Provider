@@ -15,15 +15,28 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\vehicleContoller;
 use App\Http\Controllers\IncomeController;
 
-
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Mail\VehicleMaintenanceMail;
+
+
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/about', function () {
     return view('about');
+});
+Route::get('/mail', function () {
+    //return view('about');
+    Mail::to('reveveinfolk@gmail.com')
+    ->send(new VehicleMaintenanceMail());
+
+
 });
 
 
@@ -44,8 +57,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('welcome');
-    })->name('welcome');
+        return view('welcome1');
+    })->name('welcome1');
 });
 
 // Route :: get('/',[LoginController::class, "index"])->name('welcome1');
@@ -136,15 +149,6 @@ Route :: prefix('/home/spare-parts')->group(function(){
  });
 
 
-
-
-
-
-
-
-
-
-
 //dashboard
 
 Route :: prefix('/sp/dashboard')->group(function(){
@@ -157,10 +161,6 @@ Route :: prefix('/sp/dashboard')->group(function(){
 
 
 });
-
-
-
-
 
 // dashboard inventory
 Route :: prefix('/sp/dashboard/inventrory')->group(function(){
@@ -229,11 +229,6 @@ Route :: prefix('/sp/dashboard/vehiclemaintain')->group(function(){
 
 
 });
-
-
-
-
-
 
 
 

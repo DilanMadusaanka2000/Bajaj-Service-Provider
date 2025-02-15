@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\MaintainTime;
 use App\Mail\VehicleMaintenanceMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 
 class CustomerHomeController extends Controller
@@ -41,74 +42,57 @@ class CustomerHomeController extends Controller
 
 
 
+
     public function store(Request $request)
-{
-    try {
-        // Validate the incoming request
-        $validatedData = $request->validate([
-            'full_name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone' => 'required|string|max:15',
-            'vehicle_type' => 'required|string',
-            'vehicle_name' => 'required|string',
-            'vehicle_number' => 'required|string',
-            'maintenance_services' => 'required|array', // Changed from 'string' to 'array'
-            'wash_type' => 'required|string',
-            'date' => 'required|date',
-            'time_slot' => 'required|string',
-        ]);
+    {
 
-        // Convert the maintenance services array to a comma-separated string or JSON string
-        $maintenanceServices = implode(', ', $validatedData['maintenance_services']);
-       // $maintenanceServices = implode(', ', $validatedData['maintenance_services']);// or json_encode($validatedData['maintenance_services']);
+            $validatedData = $request->validate([
+                'full_name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'phone' => 'required|string|max:15',
+                'vehicle_type' => 'required|string',
+                'vehicle_name' => 'required|string',
+                'vehicle_number' => 'required|string',
+                'maintenance_services' => 'required|array',
+                'wash_type' => 'required|string',
+                'date' => 'required|date',
+                'time_slot' => 'required|string',
+            ]);
 
-        // Create the VehicleMaintain record in the database
-        VehicleMaintain::create([
-            'full_name' => $validatedData['full_name'],
-            'email' => $validatedData['email'],
-            'phone' => $validatedData['phone'],
-            'vehicle_type' => $validatedData['vehicle_type'],
-            'vehicle_name' => $validatedData['vehicle_name'],
-            'vehicle_number' => $validatedData['vehicle_number'],
-            'maintenance_services' => $maintenanceServices, // Store as a string
-            'wash_type' => $validatedData['wash_type'],
-            'date' => $validatedData['date'],
-            'time_slot' => $validatedData['time_slot'],
-            'user_id' => Auth::id(),
-        ]);
+            $maintenanceServices = implode(', ', $validatedData['maintenance_services']);
 
+            $vehicleMaintain = VehicleMaintain::create([
+                'full_name' => $validatedData['full_name'],
+                'email' => $validatedData['email'],
+                'phone' => $validatedData['phone'],
+                'vehicle_type' => $validatedData['vehicle_type'],
+                'vehicle_name' => $validatedData['vehicle_name'],
+                'vehicle_number' => $validatedData['vehicle_number'],
+                'maintenance_services' => $maintenanceServices,
+                'wash_type' => $validatedData['wash_type'],
+                'date' => $validatedData['date'],
+                'time_slot' => $validatedData['time_slot'],
+                'user_id' => auth()->id(),
+            ]);
 
+            // Send the email
+            Mail::to($validatedData['email'])->send(new VehicleMaintenanceMail($validatedData));
+           // dd($validatedData);
 
-        // //$validatedData['maintenance_services'] = $maintenanceServices;
-        // Mail::to($validatedData['email'])->send(new VehicleMaintenanceMail($validatedData));
-        // \Log::info('Email sent successfully to: ' . $validatedData['email']);
-       // $validatedData['maintenance_services'] = implode(', ', $validatedData['maintenance_services']);
-       $validatedData['maintenance_services'] = $maintenanceServices;
-        Mail::to($validatedData['email'])->send(new VehicleMaintenanceMail($validatedData));
+            Log::info('Email sent successfully to: ' . $validatedData['email']);
+
+            return redirect()->route('home')->with('success', 'Vehicle maintenance request submitted successfully!');
 
 
-        //event(new RegistrationCreated($registration));
+            // Log::error('Error saving maintenance record: ' . $e->getMessage());
+            // Log::error('Error sending email: ' . $e->getMessage());
+           // return redirect()->route('maintain')->with('error', 'Something went wrong! Try again.');
 
-    // Send registration confirmation email
-    //Mail::to($registration->email)->send(new RegistrationConfirmation($registration));
-
-
-        \Log::info('Email sent successfully to: ' . $validatedData['email']);
-
-
-
-
-        // Success message or redirection
-        return redirect()->route('maintain')->with('success', 'Vehicle maintenance request submitted successfully!');
-    } catch (\Exception $e) {
-        // Log the error
-        \Log::error('Error saving maintenance record: ' . $e->getMessage());
-        //dd($e->getMessage()); // Show the error message in case of failure
-
-        \Log::error('Error sending email: ' . $e->getMessage());
-        dd('Error: ' . $e->getMessage());
     }
-}
+
+
+
+
 
 
 

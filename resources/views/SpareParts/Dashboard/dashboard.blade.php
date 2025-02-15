@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
+    <title>Responsive Admin Dashboard | Bajaj</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 </head>
@@ -18,9 +18,9 @@
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <img src="{{ asset('img/bajaj.png') }}" alt="Default Logo" style="width: 30px; height: 30px;">
+                            <img src="{{ asset('img/bajaj.png') }}" alt="Logo" style="width: 30px; height: 30px;">
                         </span>
-                        <span class="title">Bajaj Spar Parts Dashbord</span>
+                        <span class="title">Bajaj Spare Parts Dashboard</span>
                     </a>
                 </li>
 
@@ -77,33 +77,9 @@
                         <span class="title">Analytics and Reports</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                        </span>
-                        <span class="title">Promotions and Discounts</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title"> Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Notifications</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('login.authenticate') }}">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -126,10 +102,6 @@
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
-
-                <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
-                </div>
             </div>
 
             <!-- ======================= Cards ================== -->
@@ -139,7 +111,6 @@
                         <div class="numbers">{{ $sparePartsCount }}</div>
                         <div class="cardName">Spare Parts</div>
                     </div>
-
                     <div class="iconBx">
                         <ion-icon name="eye-outline"></ion-icon>
                     </div>
@@ -150,7 +121,6 @@
                         <div class="numbers">{{ $vehicleMaintainCount }}</div>
                         <div class="cardName">Vehicle Maintain</div>
                     </div>
-
                     <div class="iconBx">
                         <ion-icon name="cart-outline"></ion-icon>
                     </div>
@@ -161,114 +131,20 @@
                         <div class="numbers">{{ $ordersCount }}</div>
                         <div class="cardName">Orders</div>
                     </div>
-
                     <div class="iconBx">
                         <ion-icon name="chatbubbles-outline"></ion-icon>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earning</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ion-icon>
-                    </div>
-                </div>
             </div>
 
-            <!-- ================ Order Details List ================= -->
+            <!-- ================ Order Details Section ================= -->
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>Recent Orders</h2>
                         <a href="#" class="btn">View All</a>
                     </div>
-
-
-                </div>
-
-                <!-- ================= New Customers ================ -->
-                <div class="recentCustomers">
-                    <div class="cardHeader">
-                        <h2>Recent Customers</h2>
-                    </div>
-
-                    <table>
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Dilan <br> <span>Sri Lanka</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Isuru <br> <span>Sri Lanak</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amila <br> <span>Sri Lanak</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Eshan <br> <span>Sri lanka</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Test <br> <span>Sri Lanka</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Test1 <br> <span>Sri Lanak</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Test <br> <span>Sri Lanka</span></h4>
-                            </td>
-                        </tr>
-                    </table>
+                    <!-- Order details table or list can be added here -->
                 </div>
             </div>
         </div>
@@ -276,8 +152,6 @@
 
     <!-- =========== Scripts =========  -->
     <script src="assets/js/main.js"></script>
-
-    <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

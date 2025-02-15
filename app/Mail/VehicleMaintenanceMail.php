@@ -17,6 +17,7 @@ class VehicleMaintenanceMail extends Mailable
      */
     public function __construct($formData)
     {
+        $formData['maintenance_services'] = implode(', ', $formData['maintenance_services']);
         $this->formData = $formData;
     }
 
@@ -25,8 +26,10 @@ class VehicleMaintenanceMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.vehicle_maintenance')
+         return $this->view('emails.vehicle_maintenance')
             ->subject('Vehicle Maintenance Request Confirmation')
             ->with(['formData' => $this->formData]);
+
+       // return $this->view('mail1.hello');
     }
 }

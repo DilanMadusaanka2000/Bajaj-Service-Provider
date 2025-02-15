@@ -56,7 +56,7 @@
         {{-- <th>#</th> --}}
         <th>ID</th>
         <th>Name</th>
-        <th>Email</th>
+        <th>Category</th>
         <th>price</th>
         <th>Discount</th>
         <th>stock</th>
@@ -145,6 +145,37 @@
             event.target.submit();
         }
     }
+
+
+
+
+
+
+function liveSearch() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.querySelector("table"); // Get the table
+    tr = table.getElementsByTagName("tr"); // Get all rows
+
+    for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+        let found = false;
+        td = tr[i].getElementsByTagName("td"); // Get all columns in the row
+
+        for (let j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText; // Get the text value
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true; // Match found
+                    break;
+                }
+            }
+        }
+
+        tr[i].style.display = found ? "" : "none"; // Show/hide row
+    }
+}
+
 </script>
 
 
