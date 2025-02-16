@@ -81,7 +81,7 @@ class CustomerHomeController extends Controller
 
             Log::info('Email sent successfully to: ' . $validatedData['email']);
 
-            return redirect()->route('home')->with('success', 'Vehicle maintenance request submitted successfully!');
+            return redirect()->route('maintain')->with('success', 'Vehicle maintenance request submitted successfully!');
 
 
             // Log::error('Error saving maintenance record: ' . $e->getMessage());

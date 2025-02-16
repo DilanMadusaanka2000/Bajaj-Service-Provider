@@ -222,6 +222,7 @@ Route :: prefix('/sp/dashboard/vehiclemaintain')->group(function(){
 
     Route::get('/', [vehicleContoller::class, 'index'])->name('vehicle');
     Route::get('/vehicle/view', [vehicleContoller::class, 'view'])->name('vehicle.view');
+    Route::get('/vehicle/view/today', [vehicleContoller::class, 'todayMaintain'])->name('vehicle.view.today');
     Route::get('/view/maintain', [vehicleContoller::class, 'view'])->name('vehicle.search');
     Route::put('/update-status/{id}', [vehicleContoller::class, 'updateStatus'])->name('vehicle.updateStatus');
 

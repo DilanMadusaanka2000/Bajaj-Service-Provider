@@ -19,6 +19,8 @@ class OrderPlacedMail extends Mailable
      */
     public function __construct($order)
     {
+        //$formData['maintenance_services'] = implode(', ', $formData['maintenance_services']);
+       // $order['order_placement'] = implode(',', $order['order_placement']);
         $this->order = $order;
     }
 
@@ -29,10 +31,11 @@ class OrderPlacedMail extends Mailable
      */
     public function build()
     {
-       
+
 
         return $this->subject('Order Confirmation')
                     ->view('email.order_placed')
                     ->with('order');
     }
 }
+

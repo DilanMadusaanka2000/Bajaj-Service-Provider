@@ -46,9 +46,21 @@
                         </div>
                     </a>
                 </div>
+                <div class="card">
+                    <a href="{{ route('vehicle.view.today') }}" style="text-decoration: none; color: inherit;">
+                        <div>
+                            <div class="numbers">1,504</div>
+                            <div class="cardName">Today Vehicle Maintenance</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="card" style="cursor: pointer;">
-                    <a href="{{ route('income') }}" style="text-decoration: none; color: inherit;">
+                    <a href="" style="text-decoration: none; color: inherit;">
                     <div>
                         <div class="numbers">80</div>
                         <div class="cardName">Maintenance Bill generate</div>
@@ -60,7 +72,7 @@
                     </a>
                 </div>
 
-                <div class="card" style="cursor: pointer;">
+                {{-- <div class="card" style="cursor: pointer;">
                     <a href="{{ route('inventory.view.lowquantity') }}" style="text-decoration: none; color: inherit;">
                         <div>
                             <div class="numbers">Low Stock Alert</div>
@@ -71,7 +83,7 @@
                             <ion-icon name="cash-outline"></ion-icon>
                         </div>
                     </a>
-                </div>
+                </div> --}}
             </div>
 
             <!-- ================ Vehicle Maintenance Details ================= -->

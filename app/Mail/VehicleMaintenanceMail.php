@@ -28,7 +28,12 @@ class VehicleMaintenanceMail extends Mailable
     {
          return $this->view('emails.vehicle_maintenance')
             ->subject('Vehicle Maintenance Request Confirmation')
-            ->with(['formData' => $this->formData]);
+            ->with(['formData' => $this->formData])
+            ->attach(public_path('img/bajaj.png'), [
+                'as' => 'maintenance_image.jpg',
+                'mime' => 'image/jpeg',
+                'cid' => 'maintenance_image', // unique identifier
+            ]);
 
        // return $this->view('mail1.hello');
     }

@@ -32,6 +32,19 @@ class vehicleContoller extends Controller
  }
 
 
+ public function todayMaintain()
+{
+    // Get today's date
+    $today = now()->toDateString();
+
+    // Fetch maintenance records for today
+    $VehicleMaintain = VehicleMaintain::whereDate('date', $today)->get();
+
+    return view('SpareParts.vehicle_maintain.today_maintain', compact('VehicleMaintain'));
+}
+
+
+
 
  public function updateStatus(Request $request, $id)
 {
