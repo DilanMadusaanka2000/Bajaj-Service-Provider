@@ -36,14 +36,13 @@ class SparePartsController extends Controller
     {
         $search = $request->input('search'); // Get search input from request
 
-        // If search input is provided, filter spare parts based on the name
         if ($search) {
             $spareParts = SpareParts::where('name', 'like', '%' . $search . '%')->get();
         } else {
-            $spareParts = SpareParts::all(); // Fetch all spare parts if no search query
+            $spareParts = SpareParts::all();
         }
 
-        return view('SpareParts.HomePage.homepage', compact('spareParts')); // Pass data to the view
+        return view('customerView.sparparts.spareparts_view.homepage', compact('spareParts'));
     }
 
 
@@ -51,7 +50,7 @@ class SparePartsController extends Controller
     public function show($id)
     {
         $sparePart = SpareParts::findOrFail($id);// Fetch the spare part by ID
-        return view('SpareParts.HomePage.buy.spare_parts_buy', compact('sparePart')); // Pass data to the detail view
+        return view('customerView.sparparts.buy.spare_parts_buy', compact('sparePart')); // Pass data to the detail view
     }
 
 
@@ -64,7 +63,7 @@ class SparePartsController extends Controller
     {
         // Validate the request
         $request->validate([
-            'spareParts_id' => 'required|exists:spare_parts,spareParts_id', // Ensure 'id' matches your database field
+            'spareParts_id' => 'required|exists:spare_parts,spareParts_id',
             'quantity' => 'required|integer|min:1',
             'name' => 'required|string',
             'address' => 'required|string',
@@ -73,31 +72,30 @@ class SparePartsController extends Controller
         ]);
 
         try {
-            // Start a database transaction
             \DB::beginTransaction();
 
             // Create the order
             $order = $this->task->create($request->all());
 
-            // Update the stock
             $sparePart = SpareParts::findOrFail($request->spareParts_id);
 
             if ($sparePart->stock < $request->quantity) {
-                // Rollback the transaction and throw an exception if stock is insufficient
                 \DB::rollBack();
                 return redirect()->back()->with('error', 'Insufficient stock for the selected spare part.');
             }
 
-            // Deduct the ordered quantity from the stock
             $sparePart->stock -= $request->quantity;
             $sparePart->save();
 
-            // Commit the transaction
             \DB::commit();
 
-            // Send email to the logged-in user
             $userEmail = Auth::user()->email; // Get the logged-in user's email
-            Mail::to($userEmail)->send(new OrderPlacedMail($order));
+            // $orderLink = url('/home/spare-parts/order/store/' . $order->id);
+            $orderLink = url('/home/spare-parts/order/store/' . ($order->order_id ?? 'null'));
+
+
+            //dd($orderLink);
+            Mail::to($userEmail)->send(new OrderPlacedMail($order, $orderLink));
 
             // Log success message
             Log::info('Order placed and email sent successfully to: ' . $userEmail);
@@ -107,7 +105,6 @@ class SparePartsController extends Controller
             // Rollback the transaction if an error occurs
             \DB::rollBack();
 
-            // Log error details
             Log::error('Error while placing the order: ' . $e->getMessage());
 
             return redirect()->route('home')->with('error', 'Something went wrong. Please try again.');
@@ -115,7 +112,21 @@ class SparePartsController extends Controller
     }
 
 
-    
+    //update the order
+
+    public function showOrderDetails($order_id)
+{
+    $order = Order::find($order_id);
+
+    if (!$order) {
+       return view("email.order_placed");
+    }
+
+    return view('customerView.sparparts.buy.order_update', compact('order'));
+}
+
+
+
 
 
 
@@ -157,4 +168,56 @@ class SparePartsController extends Controller
 
 
 
+
+
+   //edit and update
+
+
+   public function editOrder($order_id)
+   {
+       $order = Order::find($order_id);
+
+       if (!$order) {
+           return redirect()->route('home')->with('error', 'Order not found.');
+       }
+
+       return view('customerView.sparparts.buy.order_update', compact('order'));
+   }
+
+
+
+//    public function updateOrder(Request $request, $order_id)
+//    {
+//        $request->validate([
+//            'quantity' => 'required|integer|min:1',
+//            'name' => 'required|string',
+//            'address' => 'required|string',
+//            'phone' => 'required|digits:10',
+//            'postal_code' => 'required|digits:5',
+//        ]);
+
+//        $order = Order::find($order_id);
+
+//        if (!$order) {
+//            return redirect()->route('home')->with('error', 'Order not found.');
+//        }
+
+//        $order->update([
+//            'quantity' => $request->quantity,
+//            'name' => $request->name,
+//            'address' => $request->address,
+//            'phone' => $request->phone,
+//            'postal_code' => $request->postal_code,
+//        ]);
+
+//        return redirect()->route('home')->with('success', 'Order updated successfully!');
+//    }
+
+
+
+
 }
+
+
+
+

@@ -18,7 +18,7 @@ class CommentController extends Controller
                            ->orderBy('created_at', 'desc')
                            ->get();
 
-        return view('SpareParts.HomePage.comment', compact('sparePart', 'comments'));
+        return view('customerView.sparparts.spareparts_view.comment', compact('sparePart', 'comments'));
     }
 
 
