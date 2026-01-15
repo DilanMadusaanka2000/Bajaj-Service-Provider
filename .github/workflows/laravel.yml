@@ -15,7 +15,7 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: 
+          MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: bajaj
         ports:
           - 3306:3306
@@ -46,5 +46,5 @@ jobs:
         DB_PORT: 3306
         DB_DATABASE: bajaj
         DB_USERNAME: root
-        DB_PASSWORD: 
+        DB_PASSWORD: password
       run: php artisan test
