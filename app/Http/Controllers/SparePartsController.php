@@ -92,6 +92,7 @@ class SparePartsController extends Controller
             $userEmail = Auth::user()->email; // Get the logged-in user's email
             // $orderLink = url('/home/spare-parts/order/store/' . $order->id);
             $orderLink = url('/home/spare-parts/order/store/' . ($order->order_id ?? 'null'));
+            
 
 
             //dd($orderLink);

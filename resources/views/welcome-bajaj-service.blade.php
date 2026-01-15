@@ -210,22 +210,28 @@
   <header>
     <h1>Bajaj Service Center</h1>
     <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">About Us</a></li>
-      </ul>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
     </nav>
     <div style="display: flex; justify-content: flex-end;">
-      {{-- @livewire('logout-button') --}}
+        <form method="POST" action="" style="margin-left: auto;">
+            @csrf
+            <button type="submit" name="logout" style="padding: 10px 15px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Logout
+            </button>
+        </form>
     </div>
-  </header>
+</header>
+
 
   <!-- Hero Section -->
   <section class="hero-section">
     <h2>Hi, How can we help?</h2>
-    <p>Explore support articles or find the right service for your vehicle.</p>
+    <p></p>
     <div class="search-bar">
       <input type="text" placeholder="Search using keywords...">
       <button>Search</button>

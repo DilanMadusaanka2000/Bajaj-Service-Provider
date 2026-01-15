@@ -32,16 +32,10 @@ class CustomerHomeController extends Controller
         return redirect('/login');
     }
 
-
-
     public function maintain()
     {
         return view('customerView.vehicle_Maintenance.vehicleMaintain');
     }
-
-
-
-
 
     public function store(Request $request)
     {
